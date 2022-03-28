@@ -1,2 +1,6 @@
 include ./header.pug 
-p  #{peli.Title}
+each val in films.Search
+    p.search__title= val.Title
+    p.search__year= val.Year
+    p.search__type= val.Type
+    img.search__img(src=`${val.Poster}`)
