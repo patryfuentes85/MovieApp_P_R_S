@@ -1,0 +1,19 @@
+{
+  "name": "movieapp_p_r_s",
+  "version": "1.0.0",
+  "description": "Movie_App_Backend_Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patryfuentes85/MovieApp_P_R_S.git"
+  },
+  "author": "Ricardo_Sergio_Patry",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/patryfuentes85/MovieApp_P_R_S/issues"
+  },
+  "homepage": "https://github.com/patryfuentes85/MovieApp_P_R_S#readme"
+}
