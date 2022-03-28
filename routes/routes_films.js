@@ -55,3 +55,5 @@ router.get('/restorepassword', (req, res) => {
     
     res.render('home.pug')
 })
+
+module.exports = router;
