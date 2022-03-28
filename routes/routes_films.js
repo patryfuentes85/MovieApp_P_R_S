@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const contFilm = require('../controllers/controllers_films.js')
+
 
 
 router.get('/', (req, res) => {
@@ -9,10 +11,12 @@ router.get('/dashboard', (req, res) => {
     
     res.render('home.pug')
 })
-router.get('/search/:title', (req, res) => {
-    
-    res.render('home.pug')
+
+router.get('/search/:title?', (req, res) => {
+    console.log(contFilm.getFilms);
 })
+
+
 router.get('/search', (req, res) => {
     
     res.render('home.pug')
