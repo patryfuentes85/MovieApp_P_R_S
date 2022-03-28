@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/patryfuentes85/MovieApp_P_R_S/issues"
   },
-  "homepage": "https://github.com/patryfuentes85/MovieApp_P_R_S#readme"
+  "homepage": "https://github.com/patryfuentes85/MovieApp_P_R_S#readme",
+  "devDependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mongodb": "^4.4.1",
+    "mongoose": "^6.2.8",
+    "node-fetch": "^2.6.7",
+    "pug": "^3.0.2"
+  }
 }
