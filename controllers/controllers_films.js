@@ -1,34 +1,34 @@
 const films = require("../utils/utils_films");
 
-const getDefaultFilms = async (title) => {
+
+const getFilms = async (req, res) => {
+  console.log(req.params.title);
   try {
-    const defaulFilms = await films.getDefaultList();
-    return defaulFilms;
-  } catch (err) {
-    console.log("Error");
-  }
-};
-const getFilmsByTitle = async (title) => {
-  try {
-    const getFilmsTitle = await films.getListByTitle(title);
-    return getFilmsTitle;
-  } catch (err) {
-    console.log("Error");
+    if (req.params.title) {
+      let info = await films.getListByTitle(req.params.title);
+      res.render("search_title.pug", { films: info });
+    } else {
+      let info = await films.getDefaultList();
+      res.render("search_title.pug", { films: info });
+    }
+  } catch (error) {
+    console.log(`ERROR: ${error.stack}`);
+    return [];
   }
 };
 
-const getFilmByTitle = async (title) => {
+const getFilmByTitle = async (req, res) => {
+  console.log("entrada por url = " + req.params.title);
   try {
-    const getFilmsTitle = await films.getFilmByTitle(title);
-    console.log(getFilmsTitle);
-    return getFilmsTitle;
-  } catch (err) {
-    console.log("Error");
+      let info = await films.getOneByTitle(req.params.title);
+      res.render("search_one.pug", { films: info });
+  } catch (error) {
+    console.log(`ERROR: ${error.stack}`);
+    return [];
   }
 };
 const film = {
   getFilmByTitle,
-  getDefaultFilms,
-  getFilmsByTitle,
+  getFilms,
 };
 module.exports = film;
