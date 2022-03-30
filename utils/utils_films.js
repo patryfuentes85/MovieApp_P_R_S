@@ -30,7 +30,7 @@ const getListByTitle = async (title) => {
   }
 };
 
-const getFilmByTitle = async (title) => {
+const getOneByTitle = async (title) => {
   try {
     let response = await fetch(
       `https://www.omdbapi.com/?t=${title}&apikey=d2e38c67`
@@ -47,6 +47,6 @@ const getFilmByTitle = async (title) => {
 const films = {
   getListByTitle,
   getDefaultList,
-  getFilmByTitle
+  getOneByTitle
 };
 module.exports = films;
