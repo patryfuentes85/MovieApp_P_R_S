@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const contFilm = require("../controllers/controllers_films.js");
 
+
 router.get("/", (req, res) => {
   res.render("home.pug");
 });
@@ -9,6 +10,7 @@ router.get("/", (req, res) => {
 router.get("/search/:title?", contFilm.getFilms);
 router.get("/searchone/:title?", contFilm.getFilmByTitle);
 router.post("/createMovie", contFilm.createMovie);
+router.post("/createUser", contFilm.createUser);
 
 
 router.get("/dashboard", (req, res) => {

@@ -7,10 +7,10 @@ const pool = new Pool({
     user:  process.env.USER,
     database: 'postgres',
     password: process.env.PG_PASSWORD,
-
 })
 
-const addUser = async (user) => {
+const createUser = async (user) => {
+    console.log(user)
     let client, result;
     const { user_id, username, usersurname, email, profile_pic, password } = user;
     try {
@@ -21,8 +21,12 @@ const addUser = async (user) => {
         result = data.rowCount;
     } catch (error) {
         
-    } finally {
-        client.release();
+    // } finally {
+    //     client.release();
     }
     return result
+}
+
+module.exports={
+    createUser
 }
