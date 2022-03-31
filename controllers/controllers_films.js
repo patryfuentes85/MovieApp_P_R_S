@@ -1,4 +1,5 @@
 const films = require("../utils/utils_films");
+const Movie = require("../models/models_films");
 
 
 const getFilms = async (req, res) => {
@@ -27,8 +28,44 @@ const getFilmByTitle = async (req, res) => {
     return [];
   }
 };
+
+// crear movie por el admin
+
+const createMovie = async (req,res) => {
+    try{
+        const peli = new Movie(req.body);
+        const result = await peli.save();
+
+        console.log('Movie created');
+        console.log(result);
+        res.status(201).json(result);
+    } catch(err){
+        res.status(400).json({"error":err})
+    }  
+};
+
+// obtener movie desde la base de datos 
+
+/* const getMovie = async (req,res) => {
+    let data;
+    try{
+        if(req.params.id){
+            data = await Product.findOne({'id': req.params.id}, '-_id -__v');
+            res.status(200).json(data);
+        } else{
+            data = await Product.find({}, '-_id -__v')
+            res.status(200).json({products:data})
+        }
+    }catch(err){
+        res.status(400).json({"error":err})
+    } 
+} */
+
+
+
 const film = {
   getFilmByTitle,
   getFilms,
+  createMovie
 };
 module.exports = film;
