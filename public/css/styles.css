@@ -1,12 +1,14 @@
 body {
   font-family: "Montserrat", sans-serif;
   margin: 0px;
-  background: linear-gradient(125deg, white 0%, #e0e1dd 100%);
-  height: 100vh;
+  background: linear-gradient(-45deg, #b4b4b4 0%, white 100%);
+  height: 100vw;
 }
 
 .header,
 .footer {
+  top: 0;
+  position: fixed;
   margin: 0px;
   width: 100vw;
   height: 50px;
@@ -29,15 +31,18 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  margin-top: 50px;
+  height: 445px;
 }
 
 .main__section {
-  margin-top: 20px;
   width: 300px;
   height: 424px;
+  margin-top: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -84,8 +89,7 @@ body {
 }
 
 .home__signup__button,
-.home__login__button,
-.home__google__button {
+.home__login__button {
   color: white;
   margin: 13px;
   border: transparent;
@@ -94,8 +98,6 @@ body {
   border-radius: 50px;
   background-color: rgba(255, 255, 255, 0.5);
   font-weight: 400;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
   cursor: pointer;
 }
 
@@ -109,9 +111,37 @@ body {
   border-radius: 50px;
   background-color: #f9844ae3;
   font-weight: 400;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
   cursor: pointer;
+}
+
+.home__google__button {
+  color: white;
+  margin: 13px;
+  border: transparent;
+  width: 230px;
+  height: 25px;
+  border-radius: 50px;
+  font-weight: 400;
+  cursor: pointer;
+  margin-bottom: 30px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.home__signup__button {
+  margin-top: 30px;
+}
+
+.home__signup__button:hover,
+.home__login__button:hover {
+  font-weight: 600;
+  background-color: #f9844a;
+}
+
+.home__google__button:hover {
+  color: white;
+  border: #e0e1dd solid 1px;
+  font-weight: 600;
+  background: linear-gradient(40deg, #3e80ee 0%, #00ff83 25%, #ffbc00 52%, #db4437 85%);
 }
 
 .pass__imput,
@@ -166,23 +196,60 @@ body {
   margin-top: 20px;
 }
 
-.home__google__button {
-  margin-bottom: 30px;
-}
-
-.home__signup__button {
-  margin-top: 30px;
-}
-
-.home__signup__button:hover,
-.login__button:hover,
-.home__google__button:hover {
-  font-weight: 600;
-  background-color: #f9844a;
-}
-
 .forgot__pass {
   color: white;
   font-size: 10px;
+}
+
+.search__bg__img {
+  margin-top: 40px;
+  width: 300px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 8px 13px #000000be;
+          box-shadow: 0px 8px 13px #000000be;
+}
+
+.search__year,
+.search__type {
+  color: #e0e1dd;
+  width: 270px;
+  margin: 5px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.search__title {
+  color: white;
+  width: 270px;
+  margin: 15px 0px 0px;
+  font-size: 18px;
+  text-align: center;
+  font-weight: 800;
+}
+
+.search__img {
+  border: 1px solid white;
+  border-radius: 5px;
+  height: 250px;
+  -webkit-box-shadow: 0px 0px 8px #ffffff80;
+          box-shadow: 0px 0px 8px #ffffff80;
+}
+
+.films__section {
+  margin-top: -420px;
+}
+
+.search__botton__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 20px;
 }
 /*# sourceMappingURL=styles.css.map */

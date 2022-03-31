@@ -1,11 +1,17 @@
 body {
   font-family: "Montserrat", sans-serif;
   margin: 0px;
-  background: linear-gradient(125deg, rgb(255, 255, 255) 0%, #e0e1dd 100%);
-  height: 100vh;
+  background: linear-gradient(
+    -45deg,
+    rgb(180, 180, 180) 0%,
+    rgb(255, 255, 255) 100%
+  );
+  height: 100vw;
 }
 .header,
 .footer {
+  top: 0;
+  position: fixed;
   margin: 0px;
   width: 100vw;
   height: 50px;
@@ -25,12 +31,15 @@ body {
 .main__container {
   display: flex;
   align-items: center;
-  justify-content: center;
+  flex-flow: column;
+  margin-top: 50px;
+  height: 445px;
 }
+
 .main__section {
-  margin-top: 20px;
   width: 300px;
   height: 424px;
+  margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -62,8 +71,7 @@ body {
   margin-top: 30px;
 }
 .home__signup__button,
-.home__login__button,
-.home__google__button {
+.home__login__button {
   color: white;
   margin: 13px;
   border: transparent;
@@ -72,9 +80,9 @@ body {
   border-radius: 50px;
   background-color: rgba(255, 255, 255, 0.5);
   font-weight: 400;
-  transition: 0.3s;
   cursor: pointer;
 }
+
 .signup__button,
 .login__button {
   color: white;
@@ -85,8 +93,39 @@ body {
   border-radius: 50px;
   background-color: #f9844ae3;
   font-weight: 400;
-  transition: 0.3s;
   cursor: pointer;
+}
+.home__google__button {
+  color: white;
+  margin: 13px;
+  border: transparent;
+  width: 230px;
+  height: 25px;
+  border-radius: 50px;
+  font-weight: 400;
+  cursor: pointer;
+  margin-bottom: 30px;
+  background: rgba(255, 255, 255, 0.5);
+}
+.home__signup__button {
+  margin-top: 30px;
+}
+.home__signup__button:hover,
+.home__login__button:hover {
+  font-weight: 600;
+  background-color: #f9844a;
+}
+.home__google__button:hover {
+  color: white;
+  border: #e0e1dd solid 1px;
+  font-weight: 600;
+  background: linear-gradient(
+    40deg,
+    rgba(62, 128, 238, 1) 0%,
+    rgba(0, 255, 131, 1) 25%,
+    rgba(255, 188, 0, 1) 52%,
+    rgba(219, 68, 55, 1) 85%
+  );
 }
 .pass__imput,
 .mail__imput {
@@ -116,20 +155,49 @@ body {
 .mail__description {
   margin-top: 20px;
 }
-.home__google__button {
-  margin-bottom: 30px;
-}
-.home__signup__button {
-  margin-top: 30px;
-}
-.home__signup__button:hover,
-.login__button:hover,
-.home__google__button:hover {
-  font-weight: 600;
-  background-color: #f9844a;
-}
 
 .forgot__pass {
   color: white;
   font-size: 10px;
+}
+
+.search__bg__img {
+  margin-top: 40px;
+  width: 300px;
+  border-radius: 5px;
+  box-shadow: 0px 8px 13px #000000be;
+}
+.search__year,
+.search__type {
+  color: #e0e1dd;
+  width: 270px;
+  margin: 5px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 800;
+}
+.search__title {
+  color: white;
+  width: 270px;
+  margin: 15px 0px 0px;
+  font-size: 18px;
+  text-align: center;
+  font-weight: 800;
+}
+.search__img {
+  border: 1px solid white;
+  border-radius: 5px;
+  height: 250px;
+  box-shadow: 0px 0px 8px #ffffff80;
+}
+
+.films__section {
+  margin-top: -420px;
+}
+
+.search__botton__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
 }
