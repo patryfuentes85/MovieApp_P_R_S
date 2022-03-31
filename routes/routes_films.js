@@ -11,6 +11,11 @@ router.get("/search/:title?", contFilm.getFilms);
 router.get("/searchone/:title?", contFilm.getFilmByTitle);
 router.post("/createMovie", contFilm.createMovie);
 router.post("/createUser", contFilm.createUser);
+router.get("/movies", contFilm.getAllMovies);
+
+router.put("/editMovie/:id?", (req, res) => {
+  res.render("home.pug");
+});
 
 
 router.get("/dashboard", (req, res) => {
@@ -30,9 +35,7 @@ router.post("/logout", (req, res) => {
   res.render("home.pug");
 });
 
-router.put("/editMovie/:id?", (req, res) => {
-  res.render("home.pug");
-});
+
 router.delete("/removeMovie", (req, res) => {
   res.render("home.pug");
 });
