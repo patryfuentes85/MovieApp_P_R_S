@@ -19,15 +19,15 @@ body {
 }
 
 .footer {
-position: absolute;
-bottom: 0;
+  position: absolute;
+  bottom: 0;
 }
 .main__container {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.home__section {
+.main__section {
   margin-top: 20px;
   width: 300px;
   height: 424px;
@@ -45,16 +45,21 @@ bottom: 0;
   margin-top: 70px;
   box-shadow: 0px 8px 13px #000000be;
 }
-.home__title1,
-.home__title2 {
+.main__gif {
+  width: 300px;
+  height: 30%;
+  opacity: 25%;
+}
+.main__title1,
+.main__title2 {
   font-size: 20px;
   margin: 0;
   color: white;
   text-align: center;
   font-weight: 800;
 }
-.home__title1 {
-  margin-top: 40px;
+.main__title1 {
+  margin-top: 30px;
 }
 .home__signup__button,
 .home__login__button,
@@ -70,6 +75,47 @@ bottom: 0;
   transition: 0.3s;
   cursor: pointer;
 }
+.signup__button,
+.login__button {
+  color: white;
+  margin: 13px;
+  border: transparent;
+  width: 230px;
+  height: 25px;
+  border-radius: 50px;
+  background-color: #f9844ae3;
+  font-weight: 400;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.pass__imput,
+.mail__imput {
+  color: white;
+  margin: 3px 0px 13px;
+  border: transparent;
+  height: 25px;
+  border-radius: 50px;
+  background-color: rgba(255, 255, 255, 0.5);
+  font-weight: 400;
+  transition: 0.3s;
+  width: 220px;
+  padding: 0px 0px 0px 10px;
+}
+.pass__imput::placeholder,
+.mail__imput::placeholder {
+  color: #e0e1dd;
+  font-size: 10px;
+}
+.pass__description,
+.mail__description {
+  color: white;
+  font-size: 10px;
+  margin: 0px 0px 0px 40px;
+  align-self: flex-start;
+}
+.mail__description {
+  margin-top: 20px;
+}
 .home__google__button {
   margin-bottom: 30px;
 }
@@ -77,13 +123,13 @@ bottom: 0;
   margin-top: 30px;
 }
 .home__signup__button:hover,
-.home__login__button:hover,
+.login__button:hover,
 .home__google__button:hover {
   font-weight: 600;
   background-color: #f9844a;
 }
-.main__gif {
-  width: 300px;
-  height: 30%;
-  opacity: 25%;
+
+.forgot__pass {
+  color: white;
+  font-size: 10px;
 }

@@ -18,11 +18,11 @@ router.get("/dashboard", (req, res) => {
 router.get("/movies", (req, res) => {
   res.render("home.pug");
 });
-router.post("/signup", (req, res) => {
-  res.render("home.pug");
+router.get("/signup", (req, res) => {
+  res.render("signup.pug");
 });
-router.post("/login", (req, res) => {
-  res.render("home.pug");
+router.get("/login", (req, res) => {
+  res.render("login.pug");
 });
 router.post("/logout", (req, res) => {
   res.render("home.pug");
