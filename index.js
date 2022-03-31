@@ -2,7 +2,8 @@
 // Módulos externos
 const express = require('express') // importando la módulo NPM express
 require('./utils/utils_films.js')
-const env = require("dotenv").config(); //archivo para proteger contraseñas
+require("dotenv").config(); //archivo para proteger contraseñas
+require('./utils/dbMongo');
 
 const app = express() // Inicializa el servidor. App es un bjeto que representa el server
 const port = 3000
