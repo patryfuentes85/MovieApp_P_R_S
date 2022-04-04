@@ -1,5 +1,6 @@
 const films = require("../utils/utils_films");
 const Movie = require("../models/models_films");
+const adminCreateFilm = require("../public/js/createFilm.js");
 const { db } = require("../models/models_films");
 
 // obtener pelis
@@ -75,7 +76,7 @@ const editFilms = async (req, res) => {
 // crear movie por el admin
 const createMovie = async (req, res) => {
   try {
-    const peli = new Movie(req.body);
+    const peli = new Movie(adminCreateFilm.createFilmObjet());
     const result = await peli.save();
     console.log("Movie created");
     console.log(result);
@@ -84,7 +85,8 @@ const createMovie = async (req, res) => {
     res.status(400).json({ error: err });
   }
 };
-// createFilm
+
+// Get Create Film View
 const createFilm = async (req, res) => {
   console.log(req.params.title);
   try {
@@ -96,30 +98,29 @@ const createFilm = async (req, res) => {
   }
 };
 // obtener movie desde la base de datos
-const getAllMovies = async (req,res) => {
-    let data;
-    try{
-      data = await Movie.find({}, '-_id -__v')
-      res.status(200).json(data)
-    }catch(err){
-        res.status(400).json({"error":err})
-    } 
-}
+const getAllMovies = async (req, res) => {
+  let data;
+  try {
+    data = await Movie.find({}, "-_id -__v");
+    res.status(200).json(data);
+  } catch (err) {
+    res.status(400).json({ error: err });
+  }
+};
 
-const deleteMovie = async (req,res) => {
+const deleteMovie = async (req, res) => {
   try {
     const removeMovie = req.params.title; // {} nuevo producto a guardar
-    const result = await Movie.deleteOne({title:removeMovie});
+    const result = await Movie.deleteOne({ title: removeMovie });
     res.status(200).json(result);
-  } catch(err){
-    res.status(400).json({"error":err})
-}
-  
-}
-
+  } catch (err) {
+    res.status(400).json({ error: err });
+  }
+};
 
 const editMovie = async (req, res) => {
   try {
+
     const result = await Movie.findOneAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
@@ -137,7 +138,6 @@ const editMovie = async (req, res) => {
   }
 };
 
-
 const film = {
   createFilm,
   editFilms,
@@ -148,6 +148,6 @@ const film = {
   deleteMovie,
   getFavorites,
   getAdminFilms,
-  editMovie
+  editMovie,
 };
 module.exports = film;
