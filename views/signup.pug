@@ -2,15 +2,23 @@ include ./header.pug
 main.main__container
     section.main__section
         img.main__img(src="assets/form_bg.jpg")
-        p.main__title1 SIGN UP & 
-        p.main__title2 ENJOY MOVIES
-        P.mail__description EMAIL :
-        input.mail__input(type="text", placeholder="Please, enter your email", required) 
-        P.pass__description PASSWORD 1 :
-        input.pass__input(type="password", placeholder="Please, enter your password", required) 
-        P.pass__description PASSWORD 2 :
-        input.pass__input(type="password", placeholder="Please, repeat password", required) 
+        p.signup__title SIGN UP & ENJOY
+        p.signup__mail__description EMAIL :
+        input.pass__input(type="text", required)
+        div.two__inputs
+            p.file__description SELECT YOUR PIC : 
+            label.label__file__input(for="file__input") LOAD FILE
+            input#file__input(onchange='change_file_name()', type="file", style='display: none;')
+        p.pass__description NAME :
+        input.pass__input(type="text", required) 
+        p.pass__description SURNAME :
+        input.pass__input(type="text", required) 
+        p.pass__description PASSWORD 1 :
+        input.pass__input(type="password", placeholder="Restrictions", required)
+        p.pass__description REPEAT PASSWORD :
+        input.pass__input(type="password", placeholder="Restrictions", required)  
         button.signup__button(type="submit") SIGN UP
-        img.main__gif(src="assets/gif_home_ok.gif", type="gif")
+        img.signup__gif(src="assets/gif_home_ok.gif", type="gif")
 a.favorites__link(href="http://localhost:3000/")
     button.gofavorites__button(type="click") BACK HOME
+    script(src='js/onchage__signup.js')
