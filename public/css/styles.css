@@ -239,6 +239,16 @@ body {
   font-size: 10px;
 }
 
+.file__description {
+  color: white;
+  font-size: 10px;
+  margin: 0px 5px 0px 0px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.signup__mail__description,
 .pass__description,
 .mail__description {
   color: white;
@@ -255,6 +265,45 @@ body {
 .forgot__pass {
   color: white;
   font-size: 10px;
+}
+
+.signup__gif {
+  display: none;
+  width: 300px;
+  height: 30%;
+  opacity: 25%;
+}
+
+.signup__title {
+  font-size: 20px;
+  margin: 10px;
+  color: white;
+  text-align: center;
+  font-weight: 800;
+}
+
+.label__file__input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 50px;
+  color: #0d1b2a;
+  background-color: #e0e1dd;
+  width: 100px;
+  height: 20px;
+  font-weight: 400;
+  font-size: 12px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  margin: 10px 0px 10px;
+  border: none;
+  outline: 0;
 }
 
 .dashboard__search__button,
