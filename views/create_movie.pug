@@ -2,7 +2,7 @@ include ./header_search_list.pug
 div.separador_up
 main.searchone__container
     img.searchone__bg__img(src="/assets/create_bg.jpg")
-    form.edit__info__section
+    form.edit__info__section(method="post" action="/create")
         p.searchone__type Name
         input.edit__input__name(type="text", placeholder=`${films.Title}`)
         div.two__inputs
@@ -30,10 +30,10 @@ main.searchone__container
             input.edit__input__rating(type="text", placeholder=`${films.imdbRating}`)
             input.edit__input__url(type="text", placeholder=`${films.Poster}`)
         div.searchone__botton__container
-            button.edit__button(type="submit", onclick ='getSignupValues()') SAVE NEW 
+            button.edit__button(type="sumbit") SAVE NEW 
             button.deleteFavorites(type="click")
                 img.reset__button(type="img",src="/assets/reset.png")
     a.favorites__link(href="http://localhost:3000/mymovies")
         button.gofavorites__button(type="click") MY MOVIES
-script(src="js/createFilm.js") 
+
     

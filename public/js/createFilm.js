@@ -1,4 +1,4 @@
-function createFilmObjet() {
+function createFilmObject() {
   const signupName = document.querySelector(".edit__input__name").value;
   const signupYear = document.querySelector(".edit__input__year").value;
   const signupType = document.querySelector(".edit__input__type").value;
@@ -9,23 +9,23 @@ function createFilmObjet() {
   const signupResume = document.querySelector(".edit__input__resume").value;
   const signupRating = document.querySelector(".edit__input__rating").value;
   const signupUrl = document.querySelector(".edit__input__url").value;
-
   const newFilm = {
-    title: signupName,
-    year: signupYear,
-    type: signupType,
-    genre: signupGenre,
-    runtime: signupDuration,
-    director: signupDirector,
-    cast: signupCast,
-    resume: signupResume,
-    rating: signupRating,
-    poster: signupUrl,
+    title: `${signupName}`,
+    year: `${signupYear}`,
+    type: `${signupType}`,
+    genre: `${signupGenre}`,
+    runtime: `${signupDuration}`,
+    director: `${signupDirector}`,
+    cast: `${signupCast}`,
+    resume: `${signupResume}`,
+    rating: `${signupRating}`,
+    poster: `${signupUrl}`,
   };
+  
   console.log(newFilm);
   return newFilm;
 }
 
-const film = {
-  createFilmObjet,
-};
+module.exports = {
+  createFilmObject
+}
