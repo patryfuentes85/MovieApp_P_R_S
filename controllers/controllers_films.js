@@ -1,6 +1,5 @@
 const films = require("../utils/utils_films");
 const Movie = require("../models/models_films");
-const user = require("../models/models_users.js");
 
 // obtener pelis
 
@@ -71,16 +70,6 @@ const editFilms = async (req, res) => {
   }
 };
 
-// crear usuario en  sql
-
-const createUser = async (req, res) => {
-  try {
-    let datos = await user.createUser(req.body);
-    res.status(201).json(datos);
-  } catch (error) {
-    console.log(`ERROR: ${error.stack}`);
-  }
-};
 
 // crear movie por el admin
 const createMovie = async (req, res) => {
@@ -150,7 +139,6 @@ const film = {
   getFilms,
   createMovie,
   getAllMovies,
-  createUser,
   deleteMovie,
   getFavorites,
   getAdminFilms,
