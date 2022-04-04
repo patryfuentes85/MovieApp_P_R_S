@@ -1,39 +1,38 @@
 const express = require("express");
 const router = express.Router();
 const contFilm = require("../controllers/controllers_films.js");
+const contUser = require("../controllers/controlllers_users.js");
 
 router.get("/", (req, res) => {
   res.render("home.pug");
 });
-router.get("/search/:title?", contFilm.getFilms);
 
+router.get("/search/:title?", contFilm.getFilms);
 router.get("/searchone/:title?", contFilm.getFilmByTitle);
+router.get("/create", contFilm.createFilm);
+router.post("/create", contFilm.createMovie);
+router.post("/createUser", contFilm.createUser);
+
+router.get("/movies", contFilm.getAllMovies);
+router.delete("/removeMovie/:title", contFilm.deleteMovie);
+router.put("/editMovie/", contFilm.editMovie);
 
 router.get("/dashboard", (req, res) => {
-  res.render("home.pug");
+  res.render("dashboard.pug");
 });
-
-router.get("/movies", (req, res) => {
-  res.render("home.pug");
+router.get("/admin/:id?", contFilm.getAdminFilms);
+router.get("/myMovies/:title?", contFilm.getFavorites);
+router.get("/signup", (req, res) => {
+  res.render("signup.pug");
 });
-router.post("/signup", (req, res) => {
-  res.render("home.pug");
-});
-router.post("/login", (req, res) => {
-  res.render("home.pug");
+router.get("/login", (req, res) => {
+  res.render("login.pug");
 });
 router.post("/logout", (req, res) => {
   res.render("home.pug");
 });
-router.post("/createMovie", (req, res) => {
-  res.render("home.pug");
-});
-router.put("/editMovie/:id?", (req, res) => {
-  res.render("home.pug");
-});
-router.delete("/removeMovie", (req, res) => {
-  res.render("home.pug");
-});
+
+router.get("/edit/:id?", contFilm.editFilms);
 
 router.get("/recoverpassword", (req, res) => {
   res.render("home.pug");

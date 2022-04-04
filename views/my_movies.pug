@@ -1,4 +1,4 @@
-include ./header_search_list.pug 
+include ./header.pug 
 div.separador_up
 div.search__flex
     each val in films.Search
@@ -11,8 +11,8 @@ div.search__flex
                 div.search__botton__container
                     a(href="http://localhost:3000/searchone/"+val.Title)
                         button.viewMore__button(type="click") VIEW TITLE
-                    button.addFavorites(type="click")
-                        img.addFavorites__button(type="img",src="/assets/corazon.png")
+                    button.deleteFavorites(type="click")
+                        img.deleteFavorites__button(type="img",src="/assets/delete_hover.png")
 div.separador_down
-a.favorites__link(href="http://localhost:3000/mymovies")
-    button.gofavorites__button(type="click") MY MOVIES
+a.favorites__link(href="http://localhost:3000/dashboard")
+    button.gofavorites__button(type="click") BACK HOME
