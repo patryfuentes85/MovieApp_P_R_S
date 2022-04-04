@@ -28,7 +28,44 @@ const getFilmByTitle = async (req, res) => {
     return [];
   }
 };
-
+//cambiar api a la de la base de datos favorites
+const getFavorites = async (req, res) => {
+  console.log(req.params.title);
+  try {
+    if (req.params.title) {
+      let info = await films.getListByTitle(req.params.title);
+      res.render("my_movies.pug", { films: info });
+    } else {
+      let info = await films.getDefaultList();
+      res.render("my_movies.pug", { films: info });
+    }
+  } catch (error) {
+    console.log(`ERROR: ${error.stack}`);
+    return [];
+  }
+};
+//cambiar api a la de la base de datos admin_movies
+const getAdminFilms = async (req, res) => {
+  console.log(req.params.title);
+  try {
+    let info = await films.getOneByTitle(req.params.title);
+    res.render("movies_admin.pug", { films: info });
+  } catch (error) {
+    console.log(`ERROR: ${error.stack}`);
+    return [];
+  }
+};
+//Editar entradas
+const editFilms = async (req, res) => {
+  console.log(req.params.title);
+  try {
+    let info = await films.getOneByTitle("titanic");
+    res.render("edit_movie.pug", { films: info });
+  } catch (error) {
+    console.log(`ERROR: ${error.stack}`);
+    return [];
+  }
+};
 const createUser = async (req, res) => {
   try {
     let datos = await user.createUser(req.body);
@@ -39,12 +76,10 @@ const createUser = async (req, res) => {
 };
 
 // crear movie por el admin
-
 const createMovie = async (req, res) => {
   try {
     const peli = new Movie(req.body);
     const result = await peli.save();
-
     console.log("Movie created");
     console.log(result);
     res.status(201).json(result);
@@ -52,6 +87,18 @@ const createMovie = async (req, res) => {
     res.status(400).json({ error: err });
   }
 };
+// createFilm
+const createFilm = async (req, res) => {
+  console.log(req.params.title);
+  try {
+    let info = await films.getOneByTitle("titanic");
+    res.render("create_movie.pug", { films: info });
+  } catch (error) {
+    console.log(`ERROR: ${error.stack}`);
+    return [];
+  }
+};
+
 
 // obtener movie desde la base de datos
 
@@ -71,9 +118,13 @@ const createMovie = async (req, res) => {
 } */
 
 const film = {
+  createFilm,
+  editFilms,
   getFilmByTitle,
   getFilms,
   createMovie,
   createUser,
+  getFavorites,
+  getAdminFilms,
 };
 module.exports = film;

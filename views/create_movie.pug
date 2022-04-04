@@ -1,0 +1,37 @@
+include ./header_search_list.pug 
+div.separador_up
+main.searchone__container
+    img.searchone__bg__img(src="/assets/create_bg.jpg")
+    section.edit__info__section
+        p.edit__title Now you can create a movie...
+        div.two__inputs
+            p.edit__type Year
+            p.edit__type Type
+        div.two__inputs
+            input.edit__input__year(type="text", placeholder=`${films.Year}`)
+            input.edit__input__type(type="text", placeholder=`${films.Type}`)
+        div.two__inputs
+            p.edit__type Genre
+            p.edit__type Duration
+        div.two__inputs
+            input.edit__input__genre(type="text", placeholder=`${films.Genre}`)
+            input.edit__input__duration(type="text", placeholder=`${films.Runtime}`)
+        p.searchone__type Director
+        input.edit__input__director(type="text", placeholder=`${films.Director}`)
+        p.searchone__type Cast
+        input.edit__input__cast(type="text", placeholder=`${films.Actors}`)
+        text.searchone__type Resume
+        textarea.edit__input__resume(name="resume", cols="30", rows="10") 
+        div.two__inputs
+            p.edit__type Rating
+            p.edit__type Image URL
+        div.two__inputs
+            input.edit__input__rating(type="text", placeholder=`${films.imdbRating}`)
+            input.edit__input__rating(type="text", placeholder=`${films.Poster}`)
+        div.searchone__botton__container
+            button.edit__button(type="click") SAVE NEW 
+            button.deleteFavorites(type="click")
+                img.reset__button(type="img",src="/assets/reset.png")
+    a.favorites__link(href="http://localhost:3000/mymovies")
+        button.gofavorites__button(type="click") MY MOVIES
+    
