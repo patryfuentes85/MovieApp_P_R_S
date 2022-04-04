@@ -1,31 +1,36 @@
-require("dotenv").config();
+// require("dotenv").config();
 const { Pool } = require('pg');
+let pg = require('pg');
+let pgUrl = process.env.PG_URL;
+var client = new pg.Client(pgUrl);
 
+// const pool = new Pool({
+//     host: process.env.PG_HOST,
+//     user:  process.env.USER,
+//     database: 'postgres',
+//     password: process.env.PG_PASSWORD,
+// })
 
-const pool = new Pool({
-    host: process.env.PG_HOST,
-    user:  process.env.USER,
-    database: 'postgres',
-    password: process.env.PG_PASSWORD,
-})
 
 const createUser = async (user) => {
-    console.log(user)
-    let client, result;
-    const { user_id, username, usersurname, email, profile_pic, password } = user;
+    let result;
+    const { user_id, username, usersurname, email,rol, profile_pic, password } = user;
     try {
-        client = await pool.connect();
-        const data = await client.query(`INSERT INTO users (user_id,username,usersurname,email,profile_pic,password)
-                                        VALUES ($1,$2,$3,$4,$5)`,[user_id,username,usersurname,email,profile_pic,password])
-
+        await client.connect()
+        console.log('Conectado');
+        const data = await client.query(`INSERT INTO users (user_id,username,usersurname,email,rol,profile_pic,password)
+        VALUES ($1,$2,$3,$4,$5,$6,$7)`, [user_id, username, usersurname, email,rol, profile_pic, password])
         result = data.rowCount;
     } catch (error) {
-        
-    // } finally {
-    //     client.release();
+        console.log("Some Error aqui " + error);
+    }finally {
+        await client.end();
     }
-    return result
+
+    return result;
 }
+
+
 
 module.exports={
     createUser
