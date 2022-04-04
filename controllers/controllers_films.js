@@ -72,6 +72,7 @@ const editFilms = async (req, res) => {
 };
 
 // crear usuario en  sql
+
 const createUser = async (req, res) => {
   try {
     let datos = await user.createUser(req.body);
@@ -115,6 +116,30 @@ const getAllMovies = async (req,res) => {
     } 
 }
 
+const deleteMovie = async (req,res) => {
+  try {
+    const removeMovie = req.params.title; // {} nuevo producto a guardar
+    const result = await Movie.deleteOne({title:removeMovie});
+    res.status(200).json(result);
+  } catch(err){
+    res.status(400).json({"error":err})
+}
+  
+}
+
+
+const editMovie = async (req, res) => {
+  try {
+    const editPeli = Movie(req.body);
+    const result = await editPeli.findOneAndUpdate(_id,editPeli);
+
+    console.log("Movie edited");
+    console.log(result);
+    res.status(201).json(result);
+  } catch (err) {
+    res.status(400).json({ error: err });
+  }
+};
 
 
 
@@ -124,8 +149,11 @@ const film = {
   getFilmByTitle,
   getFilms,
   createMovie,
+  getAllMovies,
   createUser,
+  deleteMovie,
   getFavorites,
   getAdminFilms,
+  editMovie
 };
 module.exports = film;

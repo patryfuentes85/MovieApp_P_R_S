@@ -4,6 +4,8 @@ const express = require('express') // importando la módulo NPM express
 require('./utils/utils_films.js')
 require("dotenv").config(); //archivo para proteger contraseñas
 require('./utils/dbMongo');
+const morgan = require('morgan')
+
 
 const app = express() // Inicializa el servidor. App es un bjeto que representa el server
 const port = 3000
@@ -17,6 +19,7 @@ app.set('view engine', 'pug');
 app.set('views', './views');
 app.use(express.static('public'));
 app.use(express.json()); // Para habilitar recepción de datos JSON en una request
+app.use(morgan('tiny'));
 
 app.use("/",filmsRouter);
 
