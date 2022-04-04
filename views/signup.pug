@@ -4,19 +4,21 @@ main.main__container
         img.main__img(src="assets/form_bg.jpg")
         p.signup__title SIGN UP & ENJOY
         p.signup__mail__description EMAIL :
-        input.pass__input(type="text", required)
-        div.two__inputs
-            p.file__description SELECT YOUR PIC : 
-            label.label__file__input(for="file__input") LOAD FILE
-            input#file__input(onchange='change_file_name()', type="file", style='display: none;')
+        input.signup__mail(type="text", required)
+        //- div.two__inputs
+        //-     p.file__description SELECT YOUR PIC : 
+        //-     label.label__file__input(for="file__input") LOAD FILE
+        //-     input#file__input(onchange='change_file_name()', type="file", style='display: none;')
         p.pass__description NAME :
-        input.pass__input(type="text", required) 
+        input.signup__name(type="text", required) 
         p.pass__description SURNAME :
-        input.pass__input(type="text", required) 
+        input.signup__surname(type="text", required) 
         p.pass__description PASSWORD 1 :
-        input.pass__input(type="password", placeholder="Restrictions", required)
+        input.signup__pass1(type="password", placeholder="Restrictions", required)
         p.pass__description REPEAT PASSWORD :
-        input.pass__input(type="password", placeholder="Restrictions", required)  
+        input.signup__pass2(type="password", placeholder="Restrictions", required)
+        p.pass__description IMG URL :
+        input.signup__url(type="text", required)   
         button.signup__button(type="submit") SIGN UP
         img.signup__gif(src="assets/gif_home_ok.gif", type="gif")
 a.favorites__link(href="http://localhost:3000/")

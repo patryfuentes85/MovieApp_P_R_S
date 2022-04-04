@@ -198,8 +198,12 @@ body {
   cursor: pointer;
 }
 
-.pass__input,
-.mail__input {
+.signup__mail,
+.signup__surname,
+.signup__name,
+.signup__pass1,
+.signup__pass2,
+.signup__url {
   color: white;
   margin: 3px 0px 13px;
   border: transparent;
@@ -215,26 +219,26 @@ body {
   outline: 0;
 }
 
-.pass__input::-webkit-input-placeholder,
-.mail__input::-webkit-input-placeholder {
+.signup__pass1::-webkit-input-placeholder,
+.signup__pass2::-webkit-input-placeholder {
   color: #e0e1dd;
   font-size: 10px;
 }
 
-.pass__input:-ms-input-placeholder,
-.mail__input:-ms-input-placeholder {
+.signup__pass1:-ms-input-placeholder,
+.signup__pass2:-ms-input-placeholder {
   color: #e0e1dd;
   font-size: 10px;
 }
 
-.pass__input::-ms-input-placeholder,
-.mail__input::-ms-input-placeholder {
+.signup__pass1::-ms-input-placeholder,
+.signup__pass2::-ms-input-placeholder {
   color: #e0e1dd;
   font-size: 10px;
 }
 
-.pass__input::placeholder,
-.mail__input::placeholder {
+.signup__pass1::placeholder,
+.signup__pass2::placeholder {
   color: #e0e1dd;
   font-size: 10px;
 }
@@ -724,6 +728,7 @@ body {
   margin: 0px 10px 0px 10px;
 }
 
+.edit__input__url,
 .edit__input__type,
 .edit__input__genre,
 .edit__input__duration,
@@ -736,6 +741,7 @@ body {
   border-radius: 10px;
 }
 
+.edit__input__name,
 .edit__input__director,
 .edit__input__cast {
   margin: 5px 10px 5px 10px;
@@ -754,6 +760,8 @@ body {
   text-align: start;
 }
 
+.edit__input__name::-webkit-input-placeholder,
+.edit__input__url::-webkit-input-placeholder,
 .edit__input__director::-webkit-input-placeholder,
 .edit__input__cast::-webkit-input-placeholder,
 .edit__input__type::-webkit-input-placeholder,
@@ -766,6 +774,8 @@ body {
   font-size: 10px;
 }
 
+.edit__input__name:-ms-input-placeholder,
+.edit__input__url:-ms-input-placeholder,
 .edit__input__director:-ms-input-placeholder,
 .edit__input__cast:-ms-input-placeholder,
 .edit__input__type:-ms-input-placeholder,
@@ -778,6 +788,8 @@ body {
   font-size: 10px;
 }
 
+.edit__input__name::-ms-input-placeholder,
+.edit__input__url::-ms-input-placeholder,
 .edit__input__director::-ms-input-placeholder,
 .edit__input__cast::-ms-input-placeholder,
 .edit__input__type::-ms-input-placeholder,
@@ -790,6 +802,8 @@ body {
   font-size: 10px;
 }
 
+.edit__input__name::placeholder,
+.edit__input__url::placeholder,
 .edit__input__director::placeholder,
 .edit__input__cast::placeholder,
 .edit__input__type::placeholder,

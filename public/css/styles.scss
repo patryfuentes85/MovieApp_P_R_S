@@ -163,8 +163,12 @@ body {
   font-weight: 400;
   cursor: pointer;
 }
-.pass__input,
-.mail__input {
+.signup__mail,
+.signup__surname,
+.signup__name,
+.signup__pass1,
+.signup__pass2,
+.signup__url {
   color: white;
   margin: 3px 0px 13px;
   border: transparent;
@@ -178,8 +182,8 @@ body {
   border: none;
   outline: 0;
 }
-.pass__input::placeholder,
-.mail__input::placeholder {
+.signup__pass1::placeholder,
+.signup__pass2::placeholder {
   color: #e0e1dd;
   font-size: 10px;
 }
@@ -526,6 +530,7 @@ body {
   width: 114px;
   margin: 0px 10px 0px 10px;
 }
+.edit__input__url,
 .edit__input__type,
 .edit__input__genre,
 .edit__input__duration,
@@ -537,6 +542,7 @@ body {
   height: 15px;
   border-radius: 10px;
 }
+.edit__input__name,
 .edit__input__director,
 .edit__input__cast {
   margin: 5px 10px 5px 10px;
@@ -554,6 +560,8 @@ body {
   border-radius: 10px;
   text-align: start;
 }
+.edit__input__name::placeholder,
+.edit__input__url::placeholder,
 .edit__input__director::placeholder,
 .edit__input__cast::placeholder,
 .edit__input__type::placeholder,
