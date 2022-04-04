@@ -2,6 +2,8 @@ const films = require("../utils/utils_films");
 const Movie = require("../models/models_films");
 const user = require("../models/models_users.js");
 
+// obtener pelis
+
 const getFilms = async (req, res) => {
   console.log(req.params.title);
   try {
@@ -17,6 +19,8 @@ const getFilms = async (req, res) => {
     return [];
   }
 };
+
+// obtener peli por titulo
 
 const getFilmByTitle = async (req, res) => {
   console.log("entrada por url = " + req.params.title);
@@ -66,6 +70,8 @@ const editFilms = async (req, res) => {
     return [];
   }
 };
+
+// crear usuario en  sql
 const createUser = async (req, res) => {
   try {
     let datos = await user.createUser(req.body);
@@ -98,24 +104,19 @@ const createFilm = async (req, res) => {
     return [];
   }
 };
-
-
 // obtener movie desde la base de datos
-
-/* const getMovie = async (req,res) => {
+const getAllMovies = async (req,res) => {
     let data;
     try{
-        if(req.params.id){
-            data = await Product.findOne({'id': req.params.id}, '-_id -__v');
-            res.status(200).json(data);
-        } else{
-            data = await Product.find({}, '-_id -__v')
-            res.status(200).json({products:data})
-        }
+      data = await Movie.find({}, '-_id -__v')
+      res.status(200).json(data)
     }catch(err){
         res.status(400).json({"error":err})
     } 
-} */
+}
+
+
+
 
 const film = {
   createFilm,
