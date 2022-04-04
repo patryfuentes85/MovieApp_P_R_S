@@ -15,7 +15,7 @@ router.post("/createUser", contFilm.createUser);
 
 router.get("/movies", contFilm.getAllMovies);
 router.delete("/removeMovie/:title", contFilm.deleteMovie);
-router.put("/editMovie/", contFilm.editMovie);
+router.put("/editMovie/:id", contFilm.editMovie);
 
 router.get("/dashboard", (req, res) => {
   res.render("dashboard.pug");

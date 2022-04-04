@@ -1,6 +1,7 @@
 const films = require("../utils/utils_films");
 const Movie = require("../models/models_films");
 const user = require("../models/models_users.js");
+const { db } = require("../models/models_films");
 
 // obtener pelis
 
@@ -130,17 +131,22 @@ const deleteMovie = async (req,res) => {
 
 const editMovie = async (req, res) => {
   try {
-    const editPeli = Movie(req.body);
-    const result = await editPeli.findOneAndUpdate(_id,editPeli);
+    const result = await Movie.findOneAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
 
-    console.log("Movie edited");
-    console.log(result);
-    res.status(201).json(result);
+    res.status(200).json({
+      status: "succes",
+      data: { result },
+    }); 
   } catch (err) {
-    res.status(400).json({ error: err });
+    res.status(400).json({ 
+      status: "fail",
+      message: "error",
+    });
   }
 };
-
 
 
 const film = {
