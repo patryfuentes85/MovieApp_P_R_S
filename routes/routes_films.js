@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const contFilm = require("../controllers/controllers_films.js");
+const contUser = require("../controllers/controlllers_users.js");
 
 router.get("/", (req, res) => {
   res.render("home.pug");
