@@ -22,6 +22,7 @@ router.get("/dashboard", (req, res) => {
 });
 router.get("/admin/:id?", contFilm.getAdminFilms);
 router.get("/myMovies/:title?", contFilm.getFavorites);
+
 router.get("/signup", (req, res) => {
   res.render("signup.pug");
 });
