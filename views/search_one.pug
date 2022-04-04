@@ -1,11 +1,32 @@
-include ./header.pug 
-
-p.search__title= films.Title
-p.search__year= films.Year
-p.search__type= films.Type
-p.search__genre= films.Genre
-p.search__runtime= films.Runtime
-p.search__actors= films.Actors
-p.search__plot= films.Plot
-p.search__imdbratings= films.imdbRating
-img.search__img(src=`${films.Poster}`)
+include ./header_search_list.pug 
+div.separador_up
+main.searchone__container
+    img.searchone__bg__img(src="/assets/form_bg.jpg")
+    section.searchone__section
+        p.searchone__title=`${films.Title.toUpperCase()}`
+        img.searchone__img(src=`${films.Poster}`)
+    section.searchone__info__section
+        p.searchone__type Year
+        p.searchone__info= `${films.Year}`
+        p.searchone__type  Type
+        p.searchone__info= `${films.Type}`
+        p.searchone__type  Genre
+        p.searchone__info= `${films.Genre}`
+        p.searchone__type  Duration
+        p.searchone__info= `${films.Runtime}`
+        p.searchone__type  Director
+        p.searchone__info= `${films.Director}`
+        p.searchone__type  Cast
+        p.searchone__info= `${films.Actors}`
+        p.searchone__type  Resume
+        p.searchone__info= `${films.Plot}`
+        p.searchone__type  IMDB Rating
+        p.searchone__info= `${films.imdbRating} / 10`
+        div.searchone__botton__container
+            a(href="http://localhost:3000/search")
+                button.back__button(type="click") BACK
+            button.addFavorites(type="click")
+                img.addFavorites__button(type="img",src="/assets/corazon.png")
+    a.favorites__link(href="http://localhost:3000/mymovies")
+        button.gofavorites__button(type="click") MY MOVIES
+    

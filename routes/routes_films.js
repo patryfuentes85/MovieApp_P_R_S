@@ -2,29 +2,27 @@ const express = require("express");
 const router = express.Router();
 const contFilm = require("../controllers/controllers_films.js");
 
-
 router.get("/", (req, res) => {
   res.render("home.pug");
 });
 
 router.get("/search/:title?", contFilm.getFilms);
 router.get("/searchone/:title?", contFilm.getFilmByTitle);
-router.post("/createMovie", contFilm.createMovie);
+router.get("/create", contFilm.createFilm);
+router.post("/create", contFilm.createMovie);
 router.post("/createUser", contFilm.createUser);
+
 router.get("/movies", contFilm.getAllMovies);
 
 router.put("/editMovie/:id?", (req, res) => {
   res.render("home.pug");
 });
 
-
 router.get("/dashboard", (req, res) => {
-  res.render("home.pug");
+  res.render("dashboard.pug");
 });
-
-router.get("/movies", (req, res) => {
-  res.render("home.pug");
-});
+router.get("/admin/:id?", contFilm.getAdminFilms);
+router.get("/myMovies/:title?", contFilm.getFavorites);
 router.get("/signup", (req, res) => {
   res.render("signup.pug");
 });
@@ -35,6 +33,7 @@ router.post("/logout", (req, res) => {
   res.render("home.pug");
 });
 
+router.get("/edit/:id?", contFilm.editFilms);
 
 router.delete("/removeMovie", (req, res) => {
   res.render("home.pug");
