@@ -26,6 +26,7 @@
     "pug": "^3.0.2"
   },
   "dependencies": {
+    "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
     "pg": "^8.7.3",
     "sequelize": "^6.17.0"
