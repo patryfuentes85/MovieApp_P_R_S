@@ -93,8 +93,6 @@ const createMovie = async (req, res) => {
 
     // res.redirect("/create")
   } catch (err) {
-    // res.status(400).json({ error: err.errors.title.name });
-    // console.log(JSON.stringify(err))
     res.render("error.pug", { error: err });
   }
 };

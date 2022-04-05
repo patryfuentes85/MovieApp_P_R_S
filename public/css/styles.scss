@@ -596,15 +596,19 @@ body {
     height: 165px;
     width: 320px;
   }
-  p {
+  .error400__text {
     border-radius: 0px 0px 5px 5px;
     margin-top: 0px;
+    margin-bottom: 10px;
     background-color: #f9844a;
     color: white;
     font-size: 15px;
     font-weight: 600;
     width: 300px;
     padding: 10px;
+    p {
+      margin: 5px;
+    }
   }
   .error__button {
     border-radius: 50px;

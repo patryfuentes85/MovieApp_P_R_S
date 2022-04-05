@@ -854,15 +854,20 @@ body {
   width: 320px;
 }
 
-.error400__container p {
+.error400__container .error400__text {
   border-radius: 0px 0px 5px 5px;
   margin-top: 0px;
+  margin-bottom: 10px;
   background-color: #f9844a;
   color: white;
   font-size: 15px;
   font-weight: 600;
   width: 300px;
   padding: 10px;
+}
+
+.error400__container .error400__text p {
+  margin: 5px;
 }
 
 .error400__container .error__button {
