@@ -2,7 +2,7 @@ const films = require("../utils/utils_films");
 const Movie = require("../models/models_films");
 const { db } = require("../models/models_films");
 
-// obtener pelis
+// obtener pelis de api
 
 const getFilms = async (req, res) => {
   console.log(req.params.title);
@@ -20,7 +20,7 @@ const getFilms = async (req, res) => {
   }
 };
 
-// obtener peli por titulo
+// obtener peli por titulo de api
 
 const getFilmByTitle = async (req, res) => {
   console.log("entrada por url = " + req.params.title);
@@ -95,7 +95,7 @@ const createFilm = async (req, res) => {
     return [];
   }
 };
-// obtener movie desde la base de datos
+// obtener todas las pelis desde la base de datos
 const getAllMovies = async (req,res) => {
     let data;
     try{
@@ -106,6 +106,7 @@ const getAllMovies = async (req,res) => {
     } 
 }
 
+// eliminar pelis de la base de datos
 const deleteMovie = async (req,res) => {
   try {
     const removeMovie = req.params.title; // {} nuevo producto a guardar
