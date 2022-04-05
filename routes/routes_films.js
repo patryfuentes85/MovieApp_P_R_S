@@ -20,7 +20,7 @@ router.post("/createUser", contUser.createUser);
 router.get("/dashboard", (req, res) => {
   res.render("dashboard.pug");
 });
-router.get("/admin/:id?", contFilm.getAdminFilms);
+router.get("/admin/:id?", contFilm.getAllMovies);
 router.get("/myMovies/:title?", contFilm.getFavorites);
 
 router.get("/signup", (req, res) => {
