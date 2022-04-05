@@ -21,11 +21,10 @@ function createFilmObject() {
     rating: `${signupRating}`,
     poster: `${signupUrl}`,
   };
-  
   console.log(newFilm);
   return newFilm;
 }
 
-module.exports = {
-  createFilmObject
-}
+// module.exports = {
+//   createFilmObject
+// }

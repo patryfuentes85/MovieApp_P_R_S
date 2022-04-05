@@ -15,6 +15,7 @@ const filmsRouter = require('./routes/routes_films.js');
 //const res = require('express/lib/response');
 
 // Motor de vistas Pug
+app.use(express.urlencoded({ extended: false }));
 app.set('view engine', 'pug');
 app.set('views', './views');
 app.use(express.static('public'));
@@ -28,5 +29,5 @@ app.use("/",filmsRouter);
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
   })
-  
-  // module.exports = server;
+
+ // module.exports = server;

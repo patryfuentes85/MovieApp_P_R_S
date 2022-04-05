@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const contFilm = require("../controllers/controllers_films.js");
-const contUser = require("../controllers/controlllers_users.js");
+const contUser = require("../controllers/controllers_users.js");
 
 router.get("/", (req, res) => {
   res.render("home.pug");
@@ -13,9 +13,9 @@ router.get("/create", contFilm.createFilm);
 router.post("/create", contFilm.createMovie);
 router.post("/createUser", contUser.createUser);
 
-router.get("/movies", contFilm.getAllMovies);
-router.delete("/removeMovie/:title", contFilm.deleteMovie);
-router.put("/editMovie/:id", contFilm.editMovie);
+// router.get("/movies", contFilm.getAllMovies);
+// router.delete("/removeMovie/:title", contFilm.deleteMovie);
+// router.put("/editMovie/:id", contFilm.editMovie);
 
 router.get("/dashboard", (req, res) => {
   res.render("dashboard.pug");
