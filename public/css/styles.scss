@@ -163,8 +163,12 @@ body {
   font-weight: 400;
   cursor: pointer;
 }
-.pass__input,
-.mail__input {
+.signup__mail,
+.signup__surname,
+.signup__name,
+.signup__pass1,
+.signup__pass2,
+.signup__url {
   color: white;
   margin: 3px 0px 13px;
   border: transparent;
@@ -178,8 +182,8 @@ body {
   border: none;
   outline: 0;
 }
-.pass__input::placeholder,
-.mail__input::placeholder {
+.signup__pass1::placeholder,
+.signup__pass2::placeholder {
   color: #e0e1dd;
   font-size: 10px;
 }
@@ -526,6 +530,7 @@ body {
   width: 114px;
   margin: 0px 10px 0px 10px;
 }
+.edit__input__url,
 .edit__input__type,
 .edit__input__genre,
 .edit__input__duration,
@@ -537,6 +542,7 @@ body {
   height: 15px;
   border-radius: 10px;
 }
+.edit__input__name,
 .edit__input__director,
 .edit__input__cast {
   margin: 5px 10px 5px 10px;
@@ -554,6 +560,8 @@ body {
   border-radius: 10px;
   text-align: start;
 }
+.edit__input__name::placeholder,
+.edit__input__url::placeholder,
 .edit__input__director::placeholder,
 .edit__input__cast::placeholder,
 .edit__input__type::placeholder,
@@ -575,6 +583,44 @@ body {
   color: white;
   text-align: center;
   font-weight: 600;
+}
+//ERROR 400
+.error400__container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+  .error400__img {
+    border-radius: 5px 5px 0px 0px;
+    height: 165px;
+    width: 320px;
+  }
+  .error400__text {
+    border-radius: 0px 0px 5px 5px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    background-color: #f9844a;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    width: 300px;
+    padding: 10px;
+    p {
+      margin: 5px;
+    }
+  }
+  .error__button {
+    border-radius: 50px;
+    border: transparent;
+    color: white;
+    background-color: #f9844a;
+    height: 25px;
+    width: 150px;
+  }
+  .error__button:hover {
+    font-weight: 600;
+  }
 }
 
 @media screen and (min-width: 768px) {
