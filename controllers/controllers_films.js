@@ -1,5 +1,6 @@
 const films = require("../utils/utils_films");
 const Movie = require("../models/models_films");
+const SchemaEdit = require("../models/models_editMovie");
 const { db } = require("../models/models_films");
 
 // obtener pelis de api
@@ -141,7 +142,7 @@ const deleteMovie = async (req, res) => {
 
 const editMovie = async (req, res) => {
   try {
-    const result = await Movie.findOneAndUpdate(req.params.id, req.body, {
+    const result = await SchemaEdit.findOneAndUpdate(req.params.title, req.body, {
       new: true,
       runValidators: true,
     });
