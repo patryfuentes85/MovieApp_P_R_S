@@ -20,7 +20,7 @@ router.post("/createUser", contUser.createUser);
 router.get("/dashboard", (req, res) => {
   res.render("dashboard.pug");
 });
-router.get("/admin/:id?", contFilm.getAllMovies);
+router.get("/admin/:id?", contFilm.getAllMoviesMongo);
 router.get("/myMovies/:title?", contFilm.getFavorites);
 
 router.get("/signup", (req, res) => {
@@ -33,7 +33,8 @@ router.post("/logout", (req, res) => {
   res.render("home.pug");
 });
 
-router.get("/edit/:id?", contFilm.editFilms);
+router.get("/edit/:title", contFilm.getOneMovieMongo);
+// router.post("/edit/:id?", contFilm.editFilms);
 
 router.get("/recoverpassword", (req, res) => {
   res.render("home.pug");

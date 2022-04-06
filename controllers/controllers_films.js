@@ -109,12 +109,23 @@ const createFilm = async (req, res) => {
 };
 
 // obtener movie desde la base de datos
-const getAllMovies = async (req, res) => {
+const getAllMoviesMongo = async (req, res) => {
   let data;
   try {
     data = await Movie.find({}, "-_id -__v");
     // let film = res.status(200).json(data);
     res.render("movies_admin.pug", { films: data });
+  } catch (err) {
+    res.status(400).json({ error: err });
+  }
+};
+
+const getOneMovieMongo = async (req, res) => {
+  console.log(req.params.title);
+  let data;
+  try {
+    data = await Movie.findOne({ title: req.params.title }, "-_id -__v");
+    res.render("edit_movie.pug", { films: data });
   } catch (err) {
     res.status(400).json({ error: err });
   }
@@ -155,10 +166,11 @@ const film = {
   getFilmByTitle,
   getFilms,
   createMovie,
-  getAllMovies,
+  getAllMoviesMongo,
   deleteMovie,
   getFavorites,
   getAdminFilms,
   editMovie,
+  getOneMovieMongo,
 };
 module.exports = film;
