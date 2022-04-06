@@ -1,4 +1,7 @@
+const jwt = require('jsonwebtoken');
 const user = require("../models/models_users.js");
+const accessTokenSecret = 'youraccesstokensecret';
+const bcrypt = require('bcrypt');
 
 const createUser = async (req, res) => {
     try {
@@ -27,12 +30,46 @@ const deleteUser = async (req, res) => {
   } catch (error) {
     console.log(`ERROR: ${error.stack}`);
   }
-}
+};
+
+  const loginUser = async (req, res) => {
+    console.log("hola");
+  const email = req.body.email;
+  const pass = req.body.password;
+console.log(email,pass)
+  try{
+    const users = await user.getUsers();
+    const usuario = users.find(u => { return u.email === email});
+    if (usuario) {
+      const match = await bcrypt.compare(pass, usuario.password)
+      console.log('ha entrado en el primer if');
+      if (match) { 
+        console.log('ha entrado en el 2do if')
+        const payload = {
+          check: true
+        }
+        const token = jwt.sign(payload, accessTokenSecret, { expiresIn: '10m'})
+        res.cookie('accesstoken',token,{
+          httpOnly: true,
+          sameSite: 'strict'
+        }).redirect('http://localhost:3000/dashboard')
+      } else {
+        res.send('Email o password incorrecto');
+      }
+    } else {
+      res.send('Email o password incorrecto');
+    } console.log('login okkk !!')
+  } catch (error) {
+    console.log(error)
+  }
+};
+
 
 
 const users = {
   createUser,
   deleteUser,
-  getUsers
+  getUsers,
+  loginUser
 };
 module.exports = users;
