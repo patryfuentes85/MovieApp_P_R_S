@@ -4,12 +4,12 @@ const accessTokenSecret = 'youraccesstokensecret';
 const bcrypt = require('bcrypt');
 
 const createUser = async (req, res) => {
-    try {
-      let datos = await user.createUser(req.body);
-      res.status(201).json(datos);
-    } catch (error) {
-      console.log(`ERROR: ${error.stack}`);
-    }
+  try {
+    let datos = await user.createUser(req.body);
+    res.status(201).redirect("http://localhost:3000/login");
+  } catch (error) {
+    console.log(`ERROR: ${error.stack}`);
+  }
 };
 
 const getUsers = async (req, res) => {
@@ -32,24 +32,28 @@ const deleteUser = async (req, res) => {
   }
 };
 
-  const loginUser = async (req, res) => {
-    console.log("hola");
+const loginUser = async (req, res) => {
+  console.log("hola");
   const email = req.body.email;
   const pass = req.body.password;
-console.log(email,pass)
-  try{
+  console.log(email, pass)
+  try {
     const users = await user.getUsers();
-    const usuario = users.find(u => { return u.email === email});
+    const usuario = users.find(u => {
+      return u.email === email
+    });
     if (usuario) {
       const match = await bcrypt.compare(pass, usuario.password)
       console.log('ha entrado en el primer if');
-      if (match) { 
+      if (match) {
         console.log('ha entrado en el 2do if')
         const payload = {
           check: true
         }
-        const token = jwt.sign(payload, accessTokenSecret, { expiresIn: '10m'})
-        res.cookie('accesstoken',token,{
+        const token = jwt.sign(payload, accessTokenSecret, {
+          expiresIn: '10m'
+        })
+        res.cookie('accesstoken', token, {
           httpOnly: true,
           sameSite: 'strict'
         }).redirect('http://localhost:3000/dashboard')
@@ -58,7 +62,8 @@ console.log(email,pass)
       }
     } else {
       res.send('Email o password incorrecto');
-    } console.log('login okkk !!')
+    }
+    console.log('login okkk !!')
   } catch (error) {
     console.log(error)
   }
