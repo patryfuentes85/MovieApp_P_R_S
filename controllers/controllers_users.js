@@ -9,11 +9,20 @@ const createUser = async (req, res) => {
     }
 };
 
+const getUsers = async (req, res) => {
+  try {
+    let datos = await user.getUsers(req.body);
+    res.status(200).json(datos);
+  } catch (error) {
+    console.log(`ERROR: ${error.stack}`);
+  }
+};
+
 
 const deleteUser = async (req, res) => {
-  console.log(req.params);
+  console.log(req.params.email);
   try {
-    let datos = await user.deleteUser(req.params);
+    let datos = await user.deleteUser(req.params.email);
     res.status(204).json(datos);
   } catch (error) {
     console.log(`ERROR: ${error.stack}`);
@@ -23,6 +32,7 @@ const deleteUser = async (req, res) => {
 
 const users = {
   createUser,
-  deleteUser
+  deleteUser,
+  getUsers
 };
 module.exports = users;
