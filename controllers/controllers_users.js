@@ -9,6 +9,7 @@ const createUser = async (req, res) => {
     }
 };
 
+
 const deleteUser = async (req, res) => {
   console.log(req.params);
   try {

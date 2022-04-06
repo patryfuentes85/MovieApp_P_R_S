@@ -198,6 +198,8 @@ body {
   cursor: pointer;
 }
 
+.mail__input,
+.pass__input,
 .signup__mail,
 .signup__surname,
 .signup__name,
@@ -828,6 +830,58 @@ body {
   margin: 0px 0px 5px 10px;
   color: white;
   text-align: center;
+  font-weight: 600;
+}
+
+.error400__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 100px;
+}
+
+.error400__container .error400__img {
+  border-radius: 5px 5px 0px 0px;
+  height: 165px;
+  width: 320px;
+}
+
+.error400__container .error400__text {
+  border-radius: 0px 0px 5px 5px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  background-color: #f9844a;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  width: 300px;
+  padding: 10px;
+}
+
+.error400__container .error400__text p {
+  margin: 5px;
+}
+
+.error400__container .error__button {
+  border-radius: 50px;
+  border: transparent;
+  color: white;
+  background-color: #f9844a;
+  height: 25px;
+  width: 150px;
+}
+
+.error400__container .error__button:hover {
   font-weight: 600;
 }
 

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const contFilm = require("../controllers/controllers_films.js");
-const contUser = require("../controllers/controlllers_users.js");
+const contUser = require("../controllers/controllers_users.js");
 
 router.get("/", (req, res) => {
   res.render("home.pug");
@@ -14,14 +14,14 @@ router.post("/create", contFilm.createMovie);
 router.post("/createUser", contUser.createUser);
 router.post("/deleteuser", contUser.deleteUser);
 
-router.get("/movies", contFilm.getAllMovies);
-router.delete("/removeMovie/:title", contFilm.deleteMovie);
-router.put("/editMovie/:id", contFilm.editMovie);
+// router.get("/movies", contFilm.getAllMovies);
+// router.delete("/removeMovie/:title", contFilm.deleteMovie);
+// router.put("/editMovie/:id", contFilm.editMovie);
 
 router.get("/dashboard", (req, res) => {
   res.render("dashboard.pug");
 });
-router.get("/admin/:id?", contFilm.getAdminFilms);
+router.get("/admin/:id?", contFilm.getAllMoviesMongo);
 router.get("/myMovies/:title?", contFilm.getFavorites);
 
 router.get("/signup", (req, res) => {
@@ -34,7 +34,8 @@ router.post("/logout", (req, res) => {
   res.render("home.pug");
 });
 
-router.get("/edit/:id?", contFilm.editFilms);
+router.get("/edit/:title", contFilm.getOneMovieMongo);
+// router.post("/edit/:id?", contFilm.editFilms);
 
 router.get("/recoverpassword", (req, res) => {
   res.render("home.pug");
@@ -42,5 +43,4 @@ router.get("/recoverpassword", (req, res) => {
 router.get("/restorepassword", (req, res) => {
   res.render("home.pug");
 });
-
 module.exports = router;

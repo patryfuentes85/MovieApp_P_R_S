@@ -3,14 +3,14 @@ const { Pool } = require('pg');
 const bcrypt = require('bcrypt');
 let pg = require('pg');
 let pgUrl = process.env.PG_URL;
-var client = new pg.Client(pgUrl);
+const client = new pg.Client(pgUrl);
 
-// const pool = new Pool({
-//     host: process.env.PG_HOST,
-//     user:  process.env.USER,
-//     database: 'postgres',
-//     password: process.env.PG_PASSWORD,
-// })
+/* const pool = new Pool({
+    host: process.env.PG_HOST,
+    user:  process.env.PG_USER,
+    database: 'biwxwjfj',
+    password: process.env.PG_PASSWORD,
+}) */
 
 
 const createUser = async (user) => {
@@ -32,6 +32,7 @@ const createUser = async (user) => {
     return result;
 }
 
+
 const deleteUser = async (email) => {
     let result;
     try {
@@ -48,8 +49,26 @@ const deleteUser = async (email) => {
 
 }
 
+/* const getUsers = async ()=>{
+    let client,result;
+    try{
+        client = await pool.connect();
+        const data = await client.query("select * from users");
+        result = data.rows;
+    }
+    catch{
+        console.log(err);
+        throw err;
+    }
+    finally{
+        client.release();
+    }
+    return result
+}
+getUsers() */
 
 module.exports={
     createUser,
     deleteUser
+    //getUsers
 }

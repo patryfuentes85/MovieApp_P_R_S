@@ -1,9 +1,8 @@
 const films = require("../utils/utils_films");
 const Movie = require("../models/models_films");
-const adminCreateFilm = require("../public/js/createFilm.js");
 const { db } = require("../models/models_films");
 
-// obtener pelis
+// obtener pelis de api
 
 const getFilms = async (req, res) => {
   console.log(req.params.title);
@@ -21,7 +20,7 @@ const getFilms = async (req, res) => {
   }
 };
 
-// obtener peli por titulo
+// obtener peli por titulo de api
 
 const getFilmByTitle = async (req, res) => {
   console.log("entrada por url = " + req.params.title);
@@ -72,23 +71,34 @@ const editFilms = async (req, res) => {
   }
 };
 
-
 // crear movie por el admin
 const createMovie = async (req, res) => {
   try {
-    const peli = new Movie(adminCreateFilm.createFilmObjet());
+    const peli = new Movie({
+      title: req.body.name,
+      year: req.body.year,
+      type: req.body.type,
+      genre: req.body.genre,
+      runtime: req.body.duration,
+      director: req.body.director,
+      cast: req.body.cast,
+      resume: req.body.resume,
+      rating: req.body.rating,
+      poster: req.body.url,
+    });
     const result = await peli.save();
     console.log("Movie created");
     console.log(result);
     res.status(201).json(result);
+
+    // res.redirect("/create")
   } catch (err) {
-    res.status(400).json({ error: err });
+    res.render("error.pug", { error: err });
   }
 };
 
 // Get Create Film View
 const createFilm = async (req, res) => {
-  console.log(req.params.title);
   try {
     let info = await films.getOneByTitle("titanic");
     res.render("create_movie.pug", { films: info });
@@ -97,12 +107,25 @@ const createFilm = async (req, res) => {
     return [];
   }
 };
+
 // obtener movie desde la base de datos
-const getAllMovies = async (req, res) => {
+const getAllMoviesMongo = async (req, res) => {
   let data;
   try {
     data = await Movie.find({}, "-_id -__v");
-    res.status(200).json(data);
+    // let film = res.status(200).json(data);
+    res.render("movies_admin.pug", { films: data });
+  } catch (err) {
+    res.status(400).json({ error: err });
+  }
+};
+
+const getOneMovieMongo = async (req, res) => {
+  console.log(req.params.title);
+  let data;
+  try {
+    data = await Movie.findOne({ title: req.params.title }, "-_id -__v");
+    res.render("edit_movie.pug", { films: data });
   } catch (err) {
     res.status(400).json({ error: err });
   }
@@ -120,7 +143,6 @@ const deleteMovie = async (req, res) => {
 
 const editMovie = async (req, res) => {
   try {
-
     const result = await Movie.findOneAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
@@ -129,9 +151,9 @@ const editMovie = async (req, res) => {
     res.status(200).json({
       status: "succes",
       data: { result },
-    }); 
+    });
   } catch (err) {
-    res.status(400).json({ 
+    res.status(400).json({
       status: "fail",
       message: "error",
     });
@@ -144,10 +166,11 @@ const film = {
   getFilmByTitle,
   getFilms,
   createMovie,
-  getAllMovies,
+  getAllMoviesMongo,
   deleteMovie,
   getFavorites,
   getAdminFilms,
   editMovie,
+  getOneMovieMongo,
 };
 module.exports = film;
