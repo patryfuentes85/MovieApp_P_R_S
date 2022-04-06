@@ -10,7 +10,7 @@ const filmSchema = {
         type: Number, 
         required: true 
     },
-    director: { 
+    type: { 
         type: String, 
         required: true 
     },
@@ -20,6 +20,22 @@ const filmSchema = {
     },
     runtime: { 
         type: String, 
+        required: true 
+    },
+    director: { 
+        type: String, 
+        required: true 
+    },
+    cast: { 
+        type: String, 
+        required: true 
+    },
+    resume: { 
+        type: String, 
+        required: true 
+    },
+    rating: { 
+        type: Number,
         required: true 
     },
     poster:{
@@ -32,6 +48,7 @@ const filmSchema = {
         }
     }
 };
+
 
 const filmsSchema = mongoose.Schema(filmSchema);
 const Movie = mongoose.model('Movie', filmsSchema);

@@ -198,8 +198,14 @@ body {
   cursor: pointer;
 }
 
+.mail__input,
 .pass__input,
-.mail__input {
+.signup__mail,
+.signup__surname,
+.signup__name,
+.signup__pass1,
+.signup__pass2,
+.signup__url {
   color: white;
   margin: 3px 0px 13px;
   border: transparent;
@@ -215,30 +221,40 @@ body {
   outline: 0;
 }
 
-.pass__input::-webkit-input-placeholder,
-.mail__input::-webkit-input-placeholder {
+.signup__pass1::-webkit-input-placeholder,
+.signup__pass2::-webkit-input-placeholder {
   color: #e0e1dd;
   font-size: 10px;
 }
 
-.pass__input:-ms-input-placeholder,
-.mail__input:-ms-input-placeholder {
+.signup__pass1:-ms-input-placeholder,
+.signup__pass2:-ms-input-placeholder {
   color: #e0e1dd;
   font-size: 10px;
 }
 
-.pass__input::-ms-input-placeholder,
-.mail__input::-ms-input-placeholder {
+.signup__pass1::-ms-input-placeholder,
+.signup__pass2::-ms-input-placeholder {
   color: #e0e1dd;
   font-size: 10px;
 }
 
-.pass__input::placeholder,
-.mail__input::placeholder {
+.signup__pass1::placeholder,
+.signup__pass2::placeholder {
   color: #e0e1dd;
   font-size: 10px;
 }
 
+.file__description {
+  color: white;
+  font-size: 10px;
+  margin: 0px 5px 0px 0px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.signup__mail__description,
 .pass__description,
 .mail__description {
   color: white;
@@ -255,6 +271,45 @@ body {
 .forgot__pass {
   color: white;
   font-size: 10px;
+}
+
+.signup__gif {
+  display: none;
+  width: 300px;
+  height: 30%;
+  opacity: 25%;
+}
+
+.signup__title {
+  font-size: 20px;
+  margin: 10px;
+  color: white;
+  text-align: center;
+  font-weight: 800;
+}
+
+.label__file__input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 50px;
+  color: #0d1b2a;
+  background-color: #e0e1dd;
+  width: 100px;
+  height: 20px;
+  font-weight: 400;
+  font-size: 12px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  margin: 10px 0px 10px;
+  border: none;
+  outline: 0;
 }
 
 .dashboard__search__button,
@@ -675,6 +730,7 @@ body {
   margin: 0px 10px 0px 10px;
 }
 
+.edit__input__url,
 .edit__input__type,
 .edit__input__genre,
 .edit__input__duration,
@@ -687,6 +743,7 @@ body {
   border-radius: 10px;
 }
 
+.edit__input__name,
 .edit__input__director,
 .edit__input__cast {
   margin: 5px 10px 5px 10px;
@@ -705,6 +762,8 @@ body {
   text-align: start;
 }
 
+.edit__input__name::-webkit-input-placeholder,
+.edit__input__url::-webkit-input-placeholder,
 .edit__input__director::-webkit-input-placeholder,
 .edit__input__cast::-webkit-input-placeholder,
 .edit__input__type::-webkit-input-placeholder,
@@ -717,6 +776,8 @@ body {
   font-size: 10px;
 }
 
+.edit__input__name:-ms-input-placeholder,
+.edit__input__url:-ms-input-placeholder,
 .edit__input__director:-ms-input-placeholder,
 .edit__input__cast:-ms-input-placeholder,
 .edit__input__type:-ms-input-placeholder,
@@ -729,6 +790,8 @@ body {
   font-size: 10px;
 }
 
+.edit__input__name::-ms-input-placeholder,
+.edit__input__url::-ms-input-placeholder,
 .edit__input__director::-ms-input-placeholder,
 .edit__input__cast::-ms-input-placeholder,
 .edit__input__type::-ms-input-placeholder,
@@ -741,6 +804,8 @@ body {
   font-size: 10px;
 }
 
+.edit__input__name::placeholder,
+.edit__input__url::placeholder,
 .edit__input__director::placeholder,
 .edit__input__cast::placeholder,
 .edit__input__type::placeholder,
@@ -765,6 +830,58 @@ body {
   margin: 0px 0px 5px 10px;
   color: white;
   text-align: center;
+  font-weight: 600;
+}
+
+.error400__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 100px;
+}
+
+.error400__container .error400__img {
+  border-radius: 5px 5px 0px 0px;
+  height: 165px;
+  width: 320px;
+}
+
+.error400__container .error400__text {
+  border-radius: 0px 0px 5px 5px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  background-color: #f9844a;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  width: 300px;
+  padding: 10px;
+}
+
+.error400__container .error400__text p {
+  margin: 5px;
+}
+
+.error400__container .error__button {
+  border-radius: 50px;
+  border: transparent;
+  color: white;
+  background-color: #f9844a;
+  height: 25px;
+  width: 150px;
+}
+
+.error400__container .error__button:hover {
   font-weight: 600;
 }
 

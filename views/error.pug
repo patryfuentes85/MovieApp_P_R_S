@@ -1,0 +1,33 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/css/styles.css")
+        title Document
+    body 
+        section.error400__container
+            img.error400__img(src="/assets/400_bad_request.jpg")
+            div.error400__text
+                if error.errors.title
+                    p=`Error: ${error.errors.title}`
+                if error.errors.year
+                    p=`Error: ${error.errors.year}`
+                if error.errors.type
+                    p=`Error: ${error.errors.type}`
+                if error.errors.genre
+                    p=`Error: ${error.errors.genre}`
+                if error.errors.runtime
+                    p=`Error: ${error.errors.runtime}`
+                if error.errors.director
+                    p=`Error: ${error.errors.director}`
+                if error.errors.cast
+                    p=`Error: ${error.errors.cast}`
+                if error.errors.rating
+                    p=`Error: ${error.errors.rating}`
+                if error.errors.poster
+                    p=`Error: ${error.errors.poster}`
+            a(href="http://localhost:3000/create")
+                button.error__button(type="click") BACK TO CREATE
+
