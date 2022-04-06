@@ -66,7 +66,6 @@ const getUsers = async ()=>{
     return result
 }
 
-
 module.exports={
     createUser,
     deleteUser,
