@@ -49,26 +49,26 @@ const deleteUser = async (email) => {
 
 }
 
-/* const getUsers = async ()=>{
-    let client,result;
+const getUsers = async ()=>{
+    let result;
     try{
-        client = await pool.connect();
+        await client.connect()
         const data = await client.query("select * from users");
         result = data.rows;
     }
-    catch{
+    catch(err){
         console.log(err);
         throw err;
     }
     finally{
-        client.release();
+        client.end();
     }
     return result
 }
-getUsers() */
+
 
 module.exports={
     createUser,
-    deleteUser
-    //getUsers
+    deleteUser,
+    getUsers
 }
