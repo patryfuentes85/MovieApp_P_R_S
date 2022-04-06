@@ -12,6 +12,7 @@ router.get("/searchone/:title?", contFilm.getFilmByTitle);
 router.get("/create", contFilm.createFilm);
 router.post("/create", contFilm.createMovie);
 router.post("/createUser", contUser.createUser);
+router.post("/deleteuser", contUser.deleteUser);
 
 // router.get("/movies", contFilm.getAllMovies);
 // router.delete("/removeMovie/:title", contFilm.deleteMovie);

@@ -10,7 +10,19 @@ const createUser = async (req, res) => {
 };
 
 
+const deleteUser = async (req, res) => {
+  console.log(req.params);
+  try {
+    let datos = await user.deleteUser(req.params);
+    res.status(204).json(datos);
+  } catch (error) {
+    console.log(`ERROR: ${error.stack}`);
+  }
+}
+
+
 const users = {
-    createUser,
+  createUser,
+  deleteUser
 };
 module.exports = users;
