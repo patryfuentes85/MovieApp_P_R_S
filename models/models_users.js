@@ -32,8 +32,24 @@ const createUser = async (user) => {
     return result;
 }
 
+const deleteUser = async (email) => {
+    let result;
+    try {
+        await client.connect()
+        console.log('Ready to delete');
+        const data = await client.query(`DELETE FROM users
+        WHERE email='${email}'`);
+        result = data.rowCount;
+    } catch (error) {
+        console.log("Error de Borrado " + error);
+    }finally {
+        await client.end();
+    }
+
+}
 
 
 module.exports={
-    createUser
+    createUser,
+    deleteUser
 }
