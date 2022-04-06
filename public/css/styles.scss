@@ -425,6 +425,7 @@ body {
     margin-top: 5px;
   }
 }
+.delete__section,
 .edit__info__section,
 .searchone__info__section {
   text-align: justify;
@@ -586,6 +587,25 @@ body {
   text-align: center;
   font-weight: 600;
 }
+//DELETE
+
+.delete__section {
+  justify-content: center;
+  align-items: center;
+  p {
+    text-align: center;
+    margin: 10px 10px;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .delete__gif {
+    margin: 10px 10px;
+    border-radius: 5px;
+    width: 90%;
+  }
+}
+
 //ERROR 400
 .error400__container {
   display: flex;
@@ -636,11 +656,15 @@ body {
     margin-top: 0px;
     margin-left: -305px;
   }
+  .delete__section,
   .edit__info__section,
   .searchone__info__section {
     justify-content: space-between;
     margin: 19px 0px 0px 0px;
     height: 395px;
+  }
+  .delete__section{
+    justify-content: center;
   }
   .edit__info__section {
     align-items: flex-start;

@@ -1,6 +1,5 @@
 const films = require("../utils/utils_films");
 const Movie = require("../models/models_films");
-const SchemaEdit = require("../models/models_editMovie");
 const { db } = require("../models/models_films");
 
 // obtener pelis de api
@@ -49,17 +48,7 @@ const getFavorites = async (req, res) => {
     return [];
   }
 };
-//cambiar api a la de la base de datos admin_movies
-const getAdminFilms = async (req, res) => {
-  console.log(req.params.title);
-  try {
-    let info = await films.getOneByTitle(req.params.title);
-    res.render("movies_admin.pug", { films: info });
-  } catch (error) {
-    console.log(`ERROR: ${error.stack}`);
-    return [];
-  }
-};
+
 //Editar entradas
 const editFilms = async (req, res) => {
   console.log(req.params.title);
@@ -74,32 +63,44 @@ const editFilms = async (req, res) => {
 
 // crear movie por el admin
 const createMovie = async (req, res) => {
+  let coincidence = false;
   try {
-    const peli = new Movie({
-      title: req.body.name,
-      year: req.body.year,
-      type: req.body.type,
-      genre: req.body.genre,
-      runtime: req.body.duration,
-      director: req.body.director,
-      cast: req.body.cast,
-      resume: req.body.resume,
-      rating: req.body.rating,
-      poster: req.body.url,
+    let data = await Movie.find({}, "-_id -__v");
+    data.forEach(async (element) => {
+      if (element.title == req.body.name) {
+        coincidence = true;
+        console.log(element.title);
+      }
     });
-    const result = await peli.save();
-    console.log("Movie created");
-    console.log(result);
-    res.status(201).json(result);
-
-    // res.redirect("/create")
+    console.log(coincidence);
+    if (coincidence == false) {
+      const peli = new Movie({
+        title: req.body.name,
+        year: req.body.year,
+        type: req.body.type,
+        genre: req.body.genre,
+        runtime: req.body.duration,
+        director: req.body.director,
+        cast: req.body.cast,
+        resume: req.body.resume,
+        rating: req.body.rating,
+        poster: req.body.url,
+      });
+      const result = await peli.save();
+      console.log("Movie created");
+      console.log(result);
+      res.status(201).json(result);
+    } else{
+     console.log("La película ya existe")
+     res.redirect("/create");
+    }
   } catch (err) {
     res.render("error.pug", { error: err });
   }
 };
 
 // Get Create Film View
-const createFilm = async (req, res) => {
+const getCreateFilm = async (req, res) => {
   try {
     let info = await films.getOneByTitle("titanic");
     res.render("create_movie.pug", { films: info });
@@ -111,9 +112,8 @@ const createFilm = async (req, res) => {
 
 // obtener movie desde la base de datos
 const getAllMoviesMongo = async (req, res) => {
-  let data;
   try {
-    data = await Movie.find({}, "-_id -__v");
+    let data = await Movie.find({}, "-_id -__v");
     // let film = res.status(200).json(data);
     res.render("movies_admin.pug", { films: data });
   } catch (err) {
@@ -129,10 +129,19 @@ const getOneMovieMongo = async (req, res) => {
     res.status(400).json({ error: err });
   }
 };
-
+const getDeleteMovie = async (req, res) => {
+  try {
+    let data = await Movie.findOne({ title: req.params.title }, "-_id -__v");
+    res.render("delete_movie.pug", { films: data });
+  } catch (err) {
+    res.status(400).json({ error: err });
+  }
+};
 const deleteMovie = async (req, res) => {
   try {
-    const removeMovie = req.params.title; // {} nuevo producto a guardar
+    const removeMovie = req.params.title;
+    data = await Movie.find({}, "-_id -__v");
+    data.name;
     const result = await Movie.deleteOne({ title: removeMovie });
     res.status(200).json(result);
   } catch (err) {
@@ -142,7 +151,21 @@ const deleteMovie = async (req, res) => {
 
 const editMovie = async (req, res) => {
   try {
-    const result = await SchemaEdit.findOneAndUpdate(req.params.title, req.body, {
+    let query = { title: req.params.title };
+    console.log(query);
+    let update = {
+      year: req.body.year,
+      type: req.body.type,
+      genre: req.body.genre,
+      runtime: req.body.duration,
+      director: req.body.director,
+      cast: req.body.cast,
+      resume: req.body.resume,
+      rating: req.body.rating,
+      poster: req.body.url,
+    };
+    console.log(update);
+    const result = await Movie.findOneAndUpdate(query, update, {
       new: true,
       runValidators: true,
     });
@@ -151,15 +174,12 @@ const editMovie = async (req, res) => {
       data: { result },
     });
   } catch (err) {
-    res.status(400).json({
-      status: "fail",
-      message: "error",
-    });
+    res.render("error.pug", { error: err });
   }
 };
 
 const film = {
-  createFilm,
+  getCreateFilm,
   editFilms,
   getFilmByTitle,
   getFilms,
@@ -167,8 +187,8 @@ const film = {
   getAllMoviesMongo,
   deleteMovie,
   getFavorites,
-  getAdminFilms,
   editMovie,
   getOneMovieMongo,
+  getDeleteMovie,
 };
 module.exports = film;
