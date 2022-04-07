@@ -2,7 +2,7 @@
 // Módulos externos
 const express = require('express') // importando la módulo NPM express
 require('./utils/utils_films.js')
-require('./utils/scrapy');
+// require('./utils/scrapy');
 require("dotenv").config(); //archivo para proteger contraseñas
 require('./utils/dbMongo');
 require('./utils/passport-setup.js');
@@ -76,6 +76,6 @@ app.get('/logout', (req, res) => {
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
-  })
+})
 
  //module.exports = server;
