@@ -16,7 +16,7 @@ const scrapeamedefilmaffinity = async (title) => {
         let elementsArray = Array.from(elements);
         
         let reviews = [];
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 3; i++) {
             let author  = document.querySelectorAll('#pro-reviews > li > div > div.pro-crit-med')[i].innerText
             let comment =document.querySelectorAll('#pro-reviews > li > div  div[itemprop="reviewBody"]')[1].innerText
             

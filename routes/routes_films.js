@@ -49,8 +49,9 @@ router.get("/edit/:title/delete", contFilm.getDeleteMovie);
 router.post("/edit/:title/delete", contFilm.deleteMovie);
 
 router.get("/recoverpassword", (req, res) => {
-  res.render("home.pug");
+  res.render("recover.pug");
 });
+
 router.get("/restorepassword", (req, res) => {
   res.render("home.pug");
 });

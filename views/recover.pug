@@ -1,0 +1,14 @@
+include ./header.pug
+main.main__container
+    form.main__section(action="/recoverpassword", method="post") 
+        img.main__img(src="assets/form_bg.jpg")
+        p.signup__title RECOVER YOUR PASSWORD
+        p.pass__description PASSWORD 1 :
+        input.signup__pass1(type="password", name='password', placeholder="Restrictions", required)
+        p.pass__description REPEAT PASSWORD :
+        input.signup__pass2(type="password", name='password2', placeholder="Restrictions", required)
+        button.signup__button(type="submit") SEND
+        img.signup__gif(src="assets/gif_home_ok.gif", type="gif")
+a.favorites__link(href="http://localhost:3000/")
+    button.gofavorites__button(type="click") BACK HOME
+    script(src='js/onchage__signup.js')
