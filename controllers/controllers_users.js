@@ -61,7 +61,7 @@ const loginUser = async (req, res) => {
           check: true
         }
         const token = jwt.sign(payload, accessTokenSecret, {
-          expiresIn: '10m'
+          expiresIn: '2m'
         })
         res.cookie('accesstoken', token, {
           httpOnly: true,

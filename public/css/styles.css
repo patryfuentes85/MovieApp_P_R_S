@@ -352,7 +352,7 @@ body {
   -webkit-transition: 0.3s;
   transition: 0.3s;
   width: 220px;
-  padding: 0px 0px 0px 10px;
+  padding: 0px 10px 0px 10px;
   border: none;
   outline: 0;
 }
@@ -582,7 +582,7 @@ body {
 .edit__info__section,
 .searchone__info__section {
   text-align: justify;
-  padding: 15px;
+  padding: 10px;
   border-radius: 5px;
   margin-top: 10px;
   margin-bottom: 50px;
@@ -599,7 +599,7 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-flow: column;
           flex-flow: column;
-  width: 270px;
+  width: 280px;
   background: -webkit-gradient(linear, right top, left top, from(#1e334b), to(#0d1b2a));
   background: linear-gradient(-90deg, #1e334b 0%, #0d1b2a 100%);
   -webkit-box-shadow: 0px 8px 13px #000000be;
@@ -758,6 +758,7 @@ body {
   height: 15px;
   width: 90%;
   border-radius: 10px;
+  color: #0d1b2a;
 }
 
 .edit__input__resume {
@@ -766,63 +767,7 @@ body {
   border: transparent;
   height: 60px;
   border-radius: 10px;
-  text-align: start;
-}
-
-.edit__input__name::-webkit-input-placeholder,
-.edit__input__url::-webkit-input-placeholder,
-.edit__input__director::-webkit-input-placeholder,
-.edit__input__cast::-webkit-input-placeholder,
-.edit__input__type::-webkit-input-placeholder,
-.edit__input__genre::-webkit-input-placeholder,
-.edit__input__duration::-webkit-input-placeholder,
-.edit__input__rating::-webkit-input-placeholder,
-.edit__input__year::-webkit-input-placeholder {
-  color: #bababa;
-  padding-left: 3px;
-  font-size: 10px;
-}
-
-.edit__input__name:-ms-input-placeholder,
-.edit__input__url:-ms-input-placeholder,
-.edit__input__director:-ms-input-placeholder,
-.edit__input__cast:-ms-input-placeholder,
-.edit__input__type:-ms-input-placeholder,
-.edit__input__genre:-ms-input-placeholder,
-.edit__input__duration:-ms-input-placeholder,
-.edit__input__rating:-ms-input-placeholder,
-.edit__input__year:-ms-input-placeholder {
-  color: #bababa;
-  padding-left: 3px;
-  font-size: 10px;
-}
-
-.edit__input__name::-ms-input-placeholder,
-.edit__input__url::-ms-input-placeholder,
-.edit__input__director::-ms-input-placeholder,
-.edit__input__cast::-ms-input-placeholder,
-.edit__input__type::-ms-input-placeholder,
-.edit__input__genre::-ms-input-placeholder,
-.edit__input__duration::-ms-input-placeholder,
-.edit__input__rating::-ms-input-placeholder,
-.edit__input__year::-ms-input-placeholder {
-  color: #bababa;
-  padding-left: 3px;
-  font-size: 10px;
-}
-
-.edit__input__name::placeholder,
-.edit__input__url::placeholder,
-.edit__input__director::placeholder,
-.edit__input__cast::placeholder,
-.edit__input__type::placeholder,
-.edit__input__genre::placeholder,
-.edit__input__duration::placeholder,
-.edit__input__rating::placeholder,
-.edit__input__year::placeholder {
-  color: #bababa;
-  padding-left: 3px;
-  font-size: 10px;
+  color: #0d1b2a;
 }
 
 .edit__info__section {
@@ -936,7 +881,7 @@ body {
         -ms-flex-pack: justify;
             justify-content: space-between;
     margin: 19px 0px 0px 0px;
-    height: 395px;
+    height: 405px;
   }
   .delete__section {
     -webkit-box-pack: center;

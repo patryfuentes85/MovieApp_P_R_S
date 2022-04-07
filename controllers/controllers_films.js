@@ -163,15 +163,11 @@ const editMovie = async (req, res) => {
       rating: req.body.rating,
       poster: req.body.url,
     };
-    console.log(update);
     const result = await Movie.findOneAndUpdate(query, update, {
       new: true,
       runValidators: true,
     });
-    res.status(200).json({
-      status: "succes",
-      data: { result },
-    });
+    res.render("status200.res.pug", { data: result });
   } catch (err) {
     res.render("error400.pug", { error: err });
   }
