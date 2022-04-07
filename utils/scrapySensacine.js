@@ -20,7 +20,7 @@ const scrapeamedesensacine = async (title) => {
         let elementsArray = Array.from(elements);
         
         let reviews = [];
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < 6; i++) {
             let author  = document.querySelectorAll('div.review-card-aside > div > div > .meta-title')[i].innerText
             let comment = document.querySelectorAll('div.review-card-review-holder > div.content-txt.review-card-content')[i].innerText;
             

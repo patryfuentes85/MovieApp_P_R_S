@@ -26,21 +26,23 @@ const getFilms = async (req, res) => {
 // obtener peli por titulo de api
 
 const getFilmByTitle = async (req, res) => {
-  let peli = req.params.title;
-
-  let reviews1 = await scrap1.scrapeamedesensacine(peli);
-  let reviews2 = await scrap2.scrapeamedefilmaffinity(peli)
-  console.log(reviews1);
-  console.log(reviews2);
-  console.log("entrada por url = " + req.params.title);
-
   try {
-    
-    let info = await films.getOneByTitle(req.params.title);
-    res.render("search_one.pug", { films: info });
-  } catch (error) {
-    res.render("error400.pug", { error: err });
-    return [];
+  let peli = req.params.title;
+  console.log("entrada por url = " + req.params.title);
+  let reviews1 = await scrap1.scrapeamedesensacine(peli);
+  console.log(reviews1);
+  let rev2 = [];
+  reviews1.forEach((element) => {
+    rev2.push(element.author);
+    rev2.push(element.comment);
+  });
+  console.log(rev2);
+    if(reviews1){
+      let info = await films.getOneByTitle(req.params.title);
+      res.render("search_one.pug", { films: info, revTwo: rev2 }); 
+    }
+  }catch (err) {
+    res.redirect("/search");
   }
 };
 //cambiar api a la de la base de datos favorites

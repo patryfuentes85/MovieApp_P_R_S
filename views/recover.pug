@@ -3,6 +3,8 @@ main.main__container
     form.main__section(action="/recoverpassword", method="post") 
         img.main__img(src="assets/form_bg.jpg")
         p.signup__title RECOVER YOUR PASSWORD
+        p.signup__mail__description EMAIL :
+        input.signup__mail(type="text", name='email', required)
         p.pass__description PASSWORD 1 :
         input.signup__pass1(type="password", name='password', placeholder="Restrictions", required)
         p.pass__description REPEAT PASSWORD :
