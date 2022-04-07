@@ -1,6 +1,5 @@
 const films = require("../utils/utils_films");
 const Movie = require("../models/models_films");
-const SchemaEdit = require("../models/models_editMovie");
 const scrap1 = require("../utils/scrapySensacine.js");
 const scrap2 = require("../utils/scrapyFilmaffinity.js");
 
