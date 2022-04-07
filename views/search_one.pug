@@ -1,4 +1,8 @@
-include ./header_search_list.pug 
+include ./header.pug 
+    a(href="/login") 
+        button.header__admin__logout__button(type="click") LOGOUT
+    a(href="/search") 
+        button.header__admin__dash__button(type="click") SEARCH  
 div.separador_up
 main.searchone__container
     img.searchone__bg__img(src="/assets/form_bg.jpg")
@@ -27,6 +31,11 @@ main.searchone__container
                 button.back__button(type="click") BACK
             button.addFavorites(type="click")
                 img.addFavorites__button(type="img",src="/assets/corazon.png")
+    section.searchone__comments__section
+        p ALBERTO
+        p La peli esta bien pero no se que decir....
+        p PEDRO
+        p Yo la verad es que no la he visto
     a.favorites__link(href="http://localhost:3000/mymovies")
         button.gofavorites__button(type="click") MY MOVIES
     

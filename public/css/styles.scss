@@ -64,6 +64,30 @@ body {
     box-shadow: 0px 0px 3px #ffffffbc;
   }
 }
+.header__admin__dash__button,
+.header__admin__logout__button {
+  color: white;
+  margin: 2px;
+  border: transparent;
+  width: 100px;
+  height: 25px;
+  background-color: rgba(255, 255, 255, 0.5);
+  font-weight: 400;
+  cursor: pointer;
+}
+.header__admin__dash__button {
+  border-radius: 0px 50px 50px 0px;
+}
+.header__admin__dash__button:hover {
+  background-color: #f9844a;
+  font-weight: 600;
+}
+.header__admin__logout__button {
+  border-radius: 50px 0px 0px 50px;
+}
+.header__admin__logout__button:hover {
+  background-color: rgb(214, 51, 51);
+}
 //HOME
 .main__container {
   display: flex;
@@ -298,6 +322,9 @@ body {
   background-color: #f9844ae3;
   font-weight: 400;
   cursor: pointer;
+}
+.searchone__comments__section {
+  color: #ff0000;
 }
 .search__container {
   display: flex;

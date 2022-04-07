@@ -1,6 +1,5 @@
 const films = require("../utils/utils_films");
 const Movie = require("../models/models_films");
-const SchemaEdit = require("../models/models_editMovie");
 const scrap1 = require("../utils/scrapySensacine.js");
 const scrap2 = require("../utils/scrapyFilmaffinity.js");
 
@@ -153,7 +152,7 @@ const deleteMovie = async (req, res) => {
     data = await Movie.find({}, "-_id -__v");
     data.name;
     const result = await Movie.deleteOne({ title: removeMovie });
-    res.status(200).json(result);
+    res.render("status200delte.pug");
   } catch (err) {
     res.render("error400.pug", { error: err });
   }
