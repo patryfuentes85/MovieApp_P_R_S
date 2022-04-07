@@ -1,6 +1,9 @@
 const films = require("../utils/utils_films");
 const Movie = require("../models/models_films");
 const SchemaEdit = require("../models/models_editMovie");
+const scrap1 = require("../utils/scrapySensacine.js");
+const scrap2 = require("../utils/scrapyFilmaffinity.js");
+
 const { db } = require("../models/models_films");
 
 // obtener pelis de api
@@ -24,8 +27,15 @@ const getFilms = async (req, res) => {
 // obtener peli por titulo de api
 
 const getFilmByTitle = async (req, res) => {
+  let peli = req.params.title;
+
+  let reviews1 = await scrap1.scrapeamedesensacine(peli);
+  let reviews2 = await scrap2.scrapeamedefilmaffinity(peli)
+  console.log(reviews1);
+  console.log(reviews2);
   console.log("entrada por url = " + req.params.title);
   try {
+    
     let info = await films.getOneByTitle(req.params.title);
     res.render("search_one.pug", { films: info });
   } catch (error) {
