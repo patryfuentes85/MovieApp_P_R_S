@@ -5,10 +5,10 @@ const { db } = require("../models/models_films");
 // obtener pelis de api
 
 const getFilms = async (req, res) => {
-  console.log(req.params.title);
+  console.log(req.query.title);
   try {
-    if (req.params.title) {
-      let info = await films.getListByTitle(req.params.title);
+    if (req.query.title) {
+      let info = await films.getListByTitle(req.query.title);
       res.render("search_title.pug", { films: info });
     } else {
       let info = await films.getDefaultList();
@@ -23,12 +23,11 @@ const getFilms = async (req, res) => {
 // obtener peli por titulo de api
 
 const getFilmByTitle = async (req, res) => {
-  console.log("entrada por url = " + req.params.title);
   try {
     let info = await films.getOneByTitle(req.params.title);
     res.render("search_one.pug", { films: info });
   } catch (error) {
-    console.log(`ERROR: ${error.stack}`);
+    res.render("error400.pug", { error: err });
     return [];
   }
 };
@@ -90,12 +89,12 @@ const createMovie = async (req, res) => {
       console.log("Movie created");
       console.log(result);
       res.status(201).json(result);
-    } else{
-     console.log("La película ya existe")
-     res.redirect("/create");
+    } else {
+      console.log("La película ya existe");
+      res.redirect("/create");
     }
   } catch (err) {
-    res.render("error.pug", { error: err });
+    res.render("error400.pug", { error: err });
   }
 };
 
@@ -117,7 +116,7 @@ const getAllMoviesMongo = async (req, res) => {
     // let film = res.status(200).json(data);
     res.render("movies_admin.pug", { films: data });
   } catch (err) {
-    res.status(400).json({ error: err });
+    res.render("error400.pug", { error: err });
   }
 };
 
@@ -126,7 +125,7 @@ const getOneMovieMongo = async (req, res) => {
     let data = await Movie.findOne({ title: req.params.title }, "-_id -__v");
     res.render("edit_movie.pug", { films: data });
   } catch (err) {
-    res.status(400).json({ error: err });
+    res.render("error400.pug", { error: err });
   }
 };
 const getDeleteMovie = async (req, res) => {
@@ -134,7 +133,7 @@ const getDeleteMovie = async (req, res) => {
     let data = await Movie.findOne({ title: req.params.title }, "-_id -__v");
     res.render("delete_movie.pug", { films: data });
   } catch (err) {
-    res.status(400).json({ error: err });
+    res.render("error400.pug", { error: err });
   }
 };
 const deleteMovie = async (req, res) => {
@@ -145,7 +144,7 @@ const deleteMovie = async (req, res) => {
     const result = await Movie.deleteOne({ title: removeMovie });
     res.status(200).json(result);
   } catch (err) {
-    res.status(400).json({ error: err });
+    res.render("error400.pug", { error: err });
   }
 };
 
@@ -174,7 +173,7 @@ const editMovie = async (req, res) => {
       data: { result },
     });
   } catch (err) {
-    res.render("error.pug", { error: err });
+    res.render("error400.pug", { error: err });
   }
 };
 
