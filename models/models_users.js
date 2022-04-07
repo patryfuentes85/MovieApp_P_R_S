@@ -75,9 +75,10 @@ const deleteUser = async (email) => {
   }
 };
 
-const getUsers = async () => {
+const getUsers = async (email) => {
   let client;
   let result;
+  console.log(email);
   try {
     client = await pool.connect();
     const data = await client.query("select * from users");
@@ -91,8 +92,29 @@ const getUsers = async () => {
   return result;
 };
 
+const changeStatus = async (email) => {
+  let client;
+  let result;
+  try {
+    console.log(email);
+    client = await pool.connect();
+    const data = await client.query(
+      `SELECT * FROM users WHERE email = "${email}"`
+    );
+    result = data.rows;
+    console.log(result);
+  } catch (err) {
+    console.log(err);
+    throw err;
+  } finally {
+    client.release;
+  }
+  return result;
+};
+
 module.exports = {
   createUser,
   deleteUser,
   getUsers,
+  changeStatus,
 };

@@ -1,7 +1,7 @@
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 const user = require("../models/models_users.js");
-const accessTokenSecret = 'youraccesstokensecret';
-const bcrypt = require('bcrypt');
+const accessTokenSecret = "youraccesstokensecret";
+const bcrypt = require("bcrypt");
 
 const createUser = async (req, res) => {
   try {
@@ -14,13 +14,12 @@ const createUser = async (req, res) => {
 
 const findUserEmail = async (email) => {
   try {
-      const response = await user.findOne({ where: { email: email } });
-      return response
+    const response = await user.findOne({ where: { email: email } });
+    return response;
+  } catch (error) {
+    console.log(error);
   }
-  catch (error) {
-      console.log(error);
-  }
-}
+};
 
 const getUsers = async (req, res) => {
   try {
@@ -30,7 +29,6 @@ const getUsers = async (req, res) => {
     console.log(`ERROR: ${error.stack}`);
   }
 };
-
 
 const deleteUser = async (req, res) => {
   console.log(req.params.email);
@@ -43,49 +41,61 @@ const deleteUser = async (req, res) => {
 };
 
 const loginUser = async (req, res) => {
-  console.log("hola");
   const email = req.body.email;
   const pass = req.body.password;
-  console.log(email, pass)
+  console.log(email, pass);
   try {
-    const users = await user.getUsers();
-    const usuario = users.find(u => {
-      return u.email === email
+    const users = await user.getUsers(email);
+    const usuario = users.find((u) => {
+      return u.email === email;
     });
     if (usuario) {
-      const match = await bcrypt.compare(pass, usuario.password)
-      console.log('ha entrado en el primer if');
+      const match = await bcrypt.compare(pass, usuario.password);
+      let userRol = usuario.rol;
+      console.log(userRol);
+      //funcion cambiar estado
+      // const userLog = await user.changeStatus(usuario.email);
+      console.log("ha entrado en el primer if");
       if (match) {
-        console.log('ha entrado en el 2do if')
+        console.log("ha entrado en el 2do if");
         const payload = {
-          check: true
-        }
+          check: true,
+        };
         const token = jwt.sign(payload, accessTokenSecret, {
-          expiresIn: '2m'
-        })
-        res.cookie('accesstoken', token, {
-          httpOnly: true,
-          sameSite: 'strict'
-        }).redirect('http://localhost:3000/dashboard')
+          expiresIn: "2m",
+        });
+        if (userRol == "admin") {
+          res
+            .cookie("accesstoken", token, {
+              httpOnly: true,
+              sameSite: "strict",
+            })
+            .redirect("http://localhost:3000/admin");
+        } else {
+          res
+            .cookie("accesstoken", token, {
+              httpOnly: true,
+              sameSite: "strict",
+            })
+            .redirect("http://localhost:3000/dashboard");
+        }
       } else {
-        res.send('Email o password incorrecto');
+        res.send("Email o password incorrecto");
       }
     } else {
-      res.send('Email o password incorrecto');
+      res.send("Email o password incorrecto");
     }
-    console.log('login okkk !!')
+    console.log("login okkk !!");
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
-
-
 
 const users = {
   createUser,
   deleteUser,
   getUsers,
   loginUser,
-  findUserEmail
+  findUserEmail,
 };
 module.exports = users;

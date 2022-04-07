@@ -418,8 +418,66 @@ body {
   cursor: pointer;
 }
 
+.searchone__comments__title {
+  text-align: justify;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  width: 280px;
+  background: -webkit-gradient(linear, right top, left top, from(#1e334b), to(#0d1b2a));
+  background: linear-gradient(-90deg, #1e334b 0%, #0d1b2a 100%);
+  color: white;
+  text-align: center;
+}
+
 .searchone__comments__section {
-  color: #ff0000;
+  text-align: justify;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 1px;
+  margin-bottom: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  width: 280px;
+  background: -webkit-gradient(linear, right top, left top, from(#1e334b), to(#0d1b2a));
+  background: linear-gradient(-90deg, #1e334b 0%, #0d1b2a 100%);
+  -webkit-box-shadow: 0px 8px 13px #000000be;
+          box-shadow: 0px 8px 13px #000000be;
+}
+
+.searchone__comments__section .comment__article {
+  width: 220px;
+}
+
+.searchone__comments__section .comment__article .comment__name {
+  color: #f9844a;
+  font-size: 10px;
+  margin: 5px 0px 5px 10px;
+}
+
+.searchone__comments__section .comment__article .comment__content {
+  color: #ffffff;
+  font-size: 10px;
+  margin: 5px 0px 5px 10px;
 }
 
 .search__container {
@@ -618,7 +676,7 @@ body {
   padding: 10px;
   border-radius: 5px;
   margin-top: 10px;
-  margin-bottom: 50px;
+  margin-bottom: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -697,6 +755,11 @@ body {
 .edit__info__section .searchone__botton__container .addFavorites,
 .searchone__info__section .searchone__botton__container .addFavorites {
   margin: 13px 13px 5px;
+}
+
+.delete__section,
+.edit__info__section {
+  margin-bottom: 50px;
 }
 
 .edit__button {
@@ -896,6 +959,33 @@ body {
 @media screen and (min-width: 768px) {
   .searchone__bg__img {
     margin-right: 15px;
+  }
+  .searchone__comments__title {
+    width: 585px;
+  }
+  .searchone__comments__section {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row;
+            flex-flow: row;
+    margin-bottom: 20px;
+    width: 585px;
+  }
+  .searchone__comments__section .comment__article {
+    width: 420px;
+  }
+  .searchone__comments__section .comment__article .comment__name {
+    color: #f9844a;
+    font-size: 10px;
+    margin: 5px 0px 5px 10px;
+  }
+  .searchone__comments__section .comment__article .comment__content {
+    color: #ffffff;
+    font-size: 10px;
+    margin: 5px 0px 5px 10px;
   }
   .searchone__container {
     -webkit-box-orient: horizontal;

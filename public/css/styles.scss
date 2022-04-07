@@ -323,8 +323,54 @@ body {
   font-weight: 400;
   cursor: pointer;
 }
+.searchone__comments__title {
+  text-align: justify;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  display: flex;
+  flex-flow: column;
+  width: 280px;
+  background: linear-gradient(
+    -90deg,
+    rgb(30, 51, 75) 0%,
+    rgba(13, 27, 42, 1) 100%
+  );
+  color: white;
+  text-align: center;
+}
+
 .searchone__comments__section {
-  color: #ff0000;
+  text-align: justify;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 1px;
+  margin-bottom: 50px;
+  display: flex;
+  align-items: start;
+  justify-content: flex-start;
+  flex-flow: column;
+  width: 280px;
+  background: linear-gradient(
+    -90deg,
+    rgb(30, 51, 75) 0%,
+    rgba(13, 27, 42, 1) 100%
+  );
+  box-shadow: 0px 8px 13px #000000be;
+  .comment__article {
+    width: 220px;
+    .comment__name {
+      color: #f9844a;
+      font-size: 10px;
+      margin: 5px 0px 5px 10px;
+    }
+    .comment__content {
+      color: #ffffff;
+      font-size: 10px;
+      margin: 5px 0px 5px 10px;
+    }
+  }
 }
 .search__container {
   display: flex;
@@ -429,6 +475,7 @@ body {
   border-radius: 5px;
   box-shadow: 0px 8px 13px #000000be;
 }
+
 .searchone__section {
   display: flex;
   justify-content: center;
@@ -459,7 +506,7 @@ body {
   padding: 10px;
   border-radius: 5px;
   margin-top: 10px;
-  margin-bottom: 50px;
+  margin-bottom: 5px;
   display: flex;
   align-items: start;
   justify-content: flex-start;
@@ -506,6 +553,10 @@ body {
       margin: 13px 13px 5px;
     }
   }
+}
+.delete__section,
+.edit__info__section {
+  margin-bottom: 50px;
 }
 // MOVIES_ADMIN
 .edit__button {
@@ -664,6 +715,28 @@ body {
 @media screen and (min-width: 768px) {
   .searchone__bg__img {
     margin-right: 15px;
+  }
+  .searchone__comments__title {
+    width: 585px;
+  }
+  .searchone__comments__section {
+    display: flex;
+    flex-flow: row;
+    margin-bottom: 20px;
+    width: 585px;
+    .comment__article {
+      width: 420px;
+      .comment__name {
+        color: #f9844a;
+        font-size: 10px;
+        margin: 5px 0px 5px 10px;
+      }
+      .comment__content {
+        color: #ffffff;
+        font-size: 10px;
+        margin: 5px 0px 5px 10px;
+      }
+    }
   }
   .searchone__container {
     flex-flow: row;
