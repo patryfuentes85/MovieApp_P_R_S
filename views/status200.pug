@@ -8,23 +8,18 @@ html(lang="en")
         title Document
     body 
         section.error400__container
-            img.error400__img(src="/assets/400_bad_request.jpg")
+            img.error400__img(src="/assets/200_good_request.jpg")
             div.error400__text
-                p CREATE OR EDIT MOVIE SUCCESSFUL!
-                
-                p=`Error: ${error.errors.title}`
-                p=`Error: ${error.errors.year}`
-                p=`Error: ${error.errors.type}`
-                p=`Error: ${error.errors.genre}`
-                p=`Error: ${error.errors.runtime}`
-                if error.errors.director
-                    p=`Error: ${error.errors.director}`
-                if error.errors.cast
-                    p=`Error: ${error.errors.cast}`
-                if error.errors.rating
-                    p=`Error: ${error.errors.rating}`
-                if error.errors.poster
-                    p=`Error: ${error.errors.poster}`
+                p CREATE/EDIT MOVIE SUCCESSFUL!
+                p=`Year: ${data.year}`
+                p=`Type: ${data.type}`
+                p=`Genre: ${data.genre}`
+                p=`Duration: ${data.runtime}`
+                p=`Director: ${data.director}`
+                p=`Cast: ${data.cast.substr(0,30)}...`
+                p=`Resume: ${data.resume.substr(0,30)}...`
+                p=`Rating: ${data.rating}/10`
+                p=`Poster: ${data.poster.substr(0,30)}...`
             a(href="http://localhost:3000/create")
                 button.error__button(type="click") BACK TO CREATE
 
