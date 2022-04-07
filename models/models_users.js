@@ -21,15 +21,7 @@ const pool = new Pool(poolConfig);
 const createUser = async (user) => {
   let result;
   let client;
-  const {
-    username,
-    usersurname,
-    email,
-    rol,
-    profile_pic,
-    password,
-    password2,
-  } = user;
+  const {username,usersurname,email,rol,profile_pic,password,password2} = user;
   const hashPassword = await bcrypt.hash(password, 10);
   try {
     console.log("entra en el try");
@@ -91,8 +83,29 @@ const getUsers = async () => {
   return result;
 };
 
+const recoverpassword = async (email,newpass) => {
+    let result;
+    try {
+      client = await pool.connect();
+      const data = await client.query(`
+      UPDATE users 
+      SET password=$2
+      WHERE email =$1`,[email,newpass]);
+      result = data.rows;
+    } catch (err) {
+      console.log(err);
+      throw err;
+    } finally {
+      client.release;
+    }
+    return result;
+  };
+
+
+
 module.exports = {
   createUser,
   deleteUser,
-  getUsers,
+    getUsers,
+    recoverpassword
 };
