@@ -28,9 +28,9 @@ const createUser = async (user) => {
         VALUES ($1,$2,$3,$4,$5,$6)`, [username, usersurname, email,rol, profile_pic, hashPassword])
         result = data.rowCount;
         
-    } else {
+        } else {
         res.send('usuario incorrecto');
-    }
+        }
     } catch (error) {
         console.log("Some Error aqui " + error);
     }finally {

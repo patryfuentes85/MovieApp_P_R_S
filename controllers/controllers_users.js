@@ -12,6 +12,16 @@ const createUser = async (req, res) => {
   }
 };
 
+const findUserEmail = async (email) => {
+  try {
+      const response = await user.findOne({ where: { email: email } });
+      return response
+  }
+  catch (error) {
+      console.log(error);
+  }
+}
+
 const getUsers = async (req, res) => {
   try {
     let datos = await user.getUsers(req.body);
@@ -75,6 +85,7 @@ const users = {
   createUser,
   deleteUser,
   getUsers,
-  loginUser
+  loginUser,
+  findUserEmail
 };
 module.exports = users;
