@@ -99,9 +99,7 @@ const createMovie = async (req, res) => {
         poster: req.body.url,
       });
       const result = await peli.save();
-      console.log("Movie created");
-      console.log(result);
-      res.status(201).json(result);
+      res.render("status200.pug", { data: result });
     } else {
       console.log("La película ya existe");
       res.redirect("/create");
@@ -164,7 +162,6 @@ const deleteMovie = async (req, res) => {
 const editMovie = async (req, res) => {
   try {
     let query = { title: req.params.title };
-    console.log(query);
     let update = {
       year: req.body.year,
       type: req.body.type,
@@ -180,7 +177,7 @@ const editMovie = async (req, res) => {
       new: true,
       runValidators: true,
     });
-    res.render("status200.res.pug", { data: result });
+    res.render("status200.pug", { data: result });
   } catch (err) {
     res.render("error400.pug", { error: err });
   }
