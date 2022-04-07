@@ -91,11 +91,25 @@ const loginUser = async (req, res) => {
   }
 };
 
+const recoverpassword = async (req, res) => {
+  console.log(req.params.email);
+  try {
+    let datos = await user.recoverpassword(req.params.email,req.params.password);
+    res.status(204).json(datos);
+  } catch (error) {
+    console.log(`ERROR: ${error.stack}`);
+  }
+};
+
+
+
 const users = {
   createUser,
   deleteUser,
   getUsers,
   loginUser,
   findUserEmail,
+  recoverpassword,
+
 };
 module.exports = users;
