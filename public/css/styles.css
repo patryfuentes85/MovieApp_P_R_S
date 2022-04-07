@@ -352,7 +352,7 @@ body {
   -webkit-transition: 0.3s;
   transition: 0.3s;
   width: 220px;
-  padding: 0px 0px 0px 10px;
+  padding: 0px 10px 0px 10px;
   border: none;
   outline: 0;
 }
@@ -578,10 +578,11 @@ body {
   margin-top: 5px;
 }
 
+.delete__section,
 .edit__info__section,
 .searchone__info__section {
   text-align: justify;
-  padding: 15px;
+  padding: 10px;
   border-radius: 5px;
   margin-top: 10px;
   margin-bottom: 50px;
@@ -598,13 +599,14 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-flow: column;
           flex-flow: column;
-  width: 270px;
+  width: 280px;
   background: -webkit-gradient(linear, right top, left top, from(#1e334b), to(#0d1b2a));
   background: linear-gradient(-90deg, #1e334b 0%, #0d1b2a 100%);
   -webkit-box-shadow: 0px 8px 13px #000000be;
           box-shadow: 0px 8px 13px #000000be;
 }
 
+.delete__section .searchone__type,
 .edit__info__section .searchone__type,
 .searchone__info__section .searchone__type {
   color: #f9844a;
@@ -612,6 +614,7 @@ body {
   margin: 2px 10px;
 }
 
+.delete__section .searchone__info,
 .edit__info__section .searchone__info,
 .searchone__info__section .searchone__info {
   color: #ffffff;
@@ -619,6 +622,7 @@ body {
   margin: 2px 10px;
 }
 
+.delete__section .searchone__botton__container,
 .edit__info__section .searchone__botton__container,
 .searchone__info__section .searchone__botton__container {
   display: -webkit-box;
@@ -634,6 +638,7 @@ body {
       align-self: center;
 }
 
+.delete__section .searchone__botton__container .back__button,
 .edit__info__section .searchone__botton__container .back__button,
 .searchone__info__section .searchone__botton__container .back__button {
   color: white;
@@ -648,12 +653,14 @@ body {
   cursor: pointer;
 }
 
+.delete__section .searchone__botton__container .back__button:hover,
 .edit__info__section .searchone__botton__container .back__button:hover,
 .searchone__info__section .searchone__botton__container .back__button:hover {
   font-weight: 600;
   background-color: #f9844a;
 }
 
+.delete__section .searchone__botton__container .addFavorites,
 .edit__info__section .searchone__botton__container .addFavorites,
 .searchone__info__section .searchone__botton__container .addFavorites {
   margin: 13px 13px 5px;
@@ -751,6 +758,7 @@ body {
   height: 15px;
   width: 90%;
   border-radius: 10px;
+  color: #0d1b2a;
 }
 
 .edit__input__resume {
@@ -759,63 +767,7 @@ body {
   border: transparent;
   height: 60px;
   border-radius: 10px;
-  text-align: start;
-}
-
-.edit__input__name::-webkit-input-placeholder,
-.edit__input__url::-webkit-input-placeholder,
-.edit__input__director::-webkit-input-placeholder,
-.edit__input__cast::-webkit-input-placeholder,
-.edit__input__type::-webkit-input-placeholder,
-.edit__input__genre::-webkit-input-placeholder,
-.edit__input__duration::-webkit-input-placeholder,
-.edit__input__rating::-webkit-input-placeholder,
-.edit__input__year::-webkit-input-placeholder {
-  color: #bababa;
-  padding-left: 3px;
-  font-size: 10px;
-}
-
-.edit__input__name:-ms-input-placeholder,
-.edit__input__url:-ms-input-placeholder,
-.edit__input__director:-ms-input-placeholder,
-.edit__input__cast:-ms-input-placeholder,
-.edit__input__type:-ms-input-placeholder,
-.edit__input__genre:-ms-input-placeholder,
-.edit__input__duration:-ms-input-placeholder,
-.edit__input__rating:-ms-input-placeholder,
-.edit__input__year:-ms-input-placeholder {
-  color: #bababa;
-  padding-left: 3px;
-  font-size: 10px;
-}
-
-.edit__input__name::-ms-input-placeholder,
-.edit__input__url::-ms-input-placeholder,
-.edit__input__director::-ms-input-placeholder,
-.edit__input__cast::-ms-input-placeholder,
-.edit__input__type::-ms-input-placeholder,
-.edit__input__genre::-ms-input-placeholder,
-.edit__input__duration::-ms-input-placeholder,
-.edit__input__rating::-ms-input-placeholder,
-.edit__input__year::-ms-input-placeholder {
-  color: #bababa;
-  padding-left: 3px;
-  font-size: 10px;
-}
-
-.edit__input__name::placeholder,
-.edit__input__url::placeholder,
-.edit__input__director::placeholder,
-.edit__input__cast::placeholder,
-.edit__input__type::placeholder,
-.edit__input__genre::placeholder,
-.edit__input__duration::placeholder,
-.edit__input__rating::placeholder,
-.edit__input__year::placeholder {
-  color: #bababa;
-  padding-left: 3px;
-  font-size: 10px;
+  color: #0d1b2a;
 }
 
 .edit__info__section {
@@ -831,6 +783,29 @@ body {
   color: white;
   text-align: center;
   font-weight: 600;
+}
+
+.delete__section {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.delete__section p {
+  text-align: center;
+  margin: 10px 10px;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.delete__section .delete__gif {
+  margin: 10px 10px;
+  border-radius: 5px;
+  width: 90%;
 }
 
 .error400__container {
@@ -899,13 +874,19 @@ body {
     margin-top: 0px;
     margin-left: -305px;
   }
+  .delete__section,
   .edit__info__section,
   .searchone__info__section {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
     margin: 19px 0px 0px 0px;
-    height: 395px;
+    height: 405px;
+  }
+  .delete__section {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
   .edit__info__section {
     -webkit-box-align: start;

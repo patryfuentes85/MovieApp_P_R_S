@@ -280,7 +280,7 @@ body {
   font-weight: 400;
   transition: 0.3s;
   width: 220px;
-  padding: 0px 0px 0px 10px;
+  padding: 0px 10px 0px 10px;
   border: none;
   outline: 0;
 }
@@ -425,10 +425,11 @@ body {
     margin-top: 5px;
   }
 }
+.delete__section,
 .edit__info__section,
 .searchone__info__section {
   text-align: justify;
-  padding: 15px;
+  padding: 10px;
   border-radius: 5px;
   margin-top: 10px;
   margin-bottom: 50px;
@@ -436,7 +437,7 @@ body {
   align-items: start;
   justify-content: flex-start;
   flex-flow: column;
-  width: 270px;
+  width: 280px;
   background: linear-gradient(
     -90deg,
     rgb(30, 51, 75) 0%,
@@ -552,6 +553,7 @@ body {
   height: 15px;
   width: 90%;
   border-radius: 10px;
+  color: #0d1b2a;
 }
 
 .edit__input__resume {
@@ -560,21 +562,9 @@ body {
   border: transparent;
   height: 60px;
   border-radius: 10px;
-  text-align: start;
+  color: #0d1b2a;
 }
-.edit__input__name::placeholder,
-.edit__input__url::placeholder,
-.edit__input__director::placeholder,
-.edit__input__cast::placeholder,
-.edit__input__type::placeholder,
-.edit__input__genre::placeholder,
-.edit__input__duration::placeholder,
-.edit__input__rating::placeholder,
-.edit__input__year::placeholder {
-  color: rgb(186, 186, 186);
-  padding-left: 3px;
-  font-size: 10px;
-}
+
 .edit__info__section {
   align-items: center;
 }
@@ -586,6 +576,25 @@ body {
   text-align: center;
   font-weight: 600;
 }
+//DELETE
+
+.delete__section {
+  justify-content: center;
+  align-items: center;
+  p {
+    text-align: center;
+    margin: 10px 10px;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .delete__gif {
+    margin: 10px 10px;
+    border-radius: 5px;
+    width: 90%;
+  }
+}
+
 //ERROR 400
 .error400__container {
   display: flex;
@@ -636,11 +645,15 @@ body {
     margin-top: 0px;
     margin-left: -305px;
   }
+  .delete__section,
   .edit__info__section,
   .searchone__info__section {
     justify-content: space-between;
     margin: 19px 0px 0px 0px;
-    height: 395px;
+    height: 405px;
+  }
+  .delete__section {
+    justify-content: center;
   }
   .edit__info__section {
     align-items: flex-start;
