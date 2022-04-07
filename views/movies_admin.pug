@@ -1,4 +1,4 @@
-include ./header.pug 
+include ./header_admin.pug 
 div.separador_up
 each val in films
     main.searchone__container
@@ -29,5 +29,5 @@ each val in films
                 a.deleteFavorites(href=`/edit/${val.title}/delete`)
                     img.deleteFavorites__button(type="img",src="/assets/delete_hover.png")
 div.separador_down
-a.favorites__link(href="http://localhost:3000/login")
-    button.gofavorites__button(type="click") BACK
+a.favorites__link(href="http://localhost:3000/create")
+    button.gofavorites__button(type="click") NEW MOVIE

@@ -1,23 +1,22 @@
-let pg = require('pg');
-const { Pool } = require('pg');
-const bcrypt = require('bcrypt');
-const regex = require('../utils/regex.js');
+let pg = require("pg");
+const { Pool } = require("pg");
+const bcrypt = require("bcrypt");
+const regex = require("../utils/regex.js");
 
 let localPoolConfig = {
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    database: process.env.DB_DATABASE,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  database: process.env.DB_DATABASE,
 };
 const poolConfig = process.env.PG_URL
-    ? {
-          connectionString: process.env.PG_URL,
-          ssl: { rejectUnauthorized: false },
-      }
-    : localPoolConfig;
+  ? {
+      connectionString: process.env.PG_URL,
+      ssl: { rejectUnauthorized: false },
+    }
+  : localPoolConfig;
 const pool = new Pool(poolConfig);
-
 
 const createUser = async (user) => {
     let result;
@@ -41,49 +40,66 @@ const createUser = async (user) => {
         console.log("Some Error aqui " + error);
     }finally {
          client.release;
-    }
+  }
 
-    return result;
-}
-
+  return result;
+};
 
 const deleteUser = async (email) => {
-    let client;
+  let client;
+  let result;
+  try {
+    client = await pool.connect();
+    console.log("Ready to delete");
+    const data = await client.query(`DELETE FROM users
+        WHERE email='${email}'`);
+    result = data.rowCount;
+  } catch (error) {
+    console.log("Error de Borrado " + error);
+  } finally {
+    client.release;
+  }
+};
+
+const getUsers = async () => {
+  let client;
+  let result;
+  try {
+    client = await pool.connect();
+    const data = await client.query("select * from users");
+    result = data.rows;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  } finally {
+    client.release;
+  }
+  return result;
+};
+
+const recoverpassword = async (email,newpass) => {
     let result;
     try {
-        client = await pool.connect()
-        console.log('Ready to delete');
-        const data = await client.query(`DELETE FROM users
-        WHERE email='${email}'`);
-        result = data.rowCount;
-    } catch (error) {
-        console.log("Error de Borrado " + error);
-    }finally {
-         client.release;
+      client = await pool.connect();
+      const data = await client.query(`
+      UPDATE users 
+      SET password=$2
+      WHERE email =$1`,[email,newpass]);
+      result = data.rows;
+    } catch (err) {
+      console.log(err);
+      throw err;
+    } finally {
+      client.release;
     }
+    return result;
+  };
 
-}
 
-const getUsers = async ()=>{
-    let client;
-    let result;
-    try{
-        client = await pool.connect()
-        const data = await client.query("select * from users");
-        result = data.rows;
-    }
-    catch(err){
-        console.log(err);
-        throw err;
-    }
-    finally{
-        client.release;
-    }
-    return result
-}
 
-module.exports={
-    createUser,
-    deleteUser,
-    getUsers
-}
+module.exports = {
+  createUser,
+  deleteUser,
+    getUsers,
+    recoverpassword
+};

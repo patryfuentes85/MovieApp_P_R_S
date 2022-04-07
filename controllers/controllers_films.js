@@ -152,7 +152,7 @@ const deleteMovie = async (req, res) => {
     data = await Movie.find({}, "-_id -__v");
     data.name;
     const result = await Movie.deleteOne({ title: removeMovie });
-    res.status(200).json(result);
+    res.render("status200delte.pug");
   } catch (err) {
     res.render("error400.pug", { error: err });
   }
