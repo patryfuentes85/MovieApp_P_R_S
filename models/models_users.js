@@ -1,28 +1,34 @@
-// require("dotenv").config();
+let pg = require('pg');
 const { Pool } = require('pg');
 const bcrypt = require('bcrypt');
-let pg = require('pg');
-let pgUrl = process.env.PG_URL;
-const client = new pg.Client(pgUrl);
 const regex = require('../utils/regex.js');
 
-/* const pool = new Pool({
-    host: process.env.PG_HOST,
-    user:  process.env.PG_USER,
-    database: 'biwxwjfj',
-    password: process.env.PG_PASSWORD,
-}) */
+let localPoolConfig = {
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    database: process.env.DB_DATABASE,
+};
+const poolConfig = process.env.PG_URL
+    ? {
+          connectionString: process.env.PG_URL,
+          ssl: { rejectUnauthorized: false },
+      }
+    : localPoolConfig;
+const pool = new Pool(poolConfig);
 
 
 const createUser = async (user) => {
     let result;
+    let client;
     const { username, usersurname, email, rol, profile_pic, password, password2} = user;
     const hashPassword = await bcrypt.hash(password,10);
     try {
         console.log("entra en el try");
         if (regex.validateEmail(email) && regex.validatePassword(password) && password == password2 ) {
             console.log("entra en el if");
-        await client.connect()
+        client = await pool.connect()
         console.log('Conectado');
         const data = await client.query(`INSERT INTO users (username,usersurname,email,rol,profile_pic,password)
         VALUES ($1,$2,$3,$4,$5,$6)`, [username, usersurname, email,rol, profile_pic, hashPassword])
@@ -42,9 +48,10 @@ const createUser = async (user) => {
 
 
 const deleteUser = async (email) => {
+    let client;
     let result;
     try {
-        await client.connect()
+        client = await pool.connect()
         console.log('Ready to delete');
         const data = await client.query(`DELETE FROM users
         WHERE email='${email}'`);
@@ -58,9 +65,10 @@ const deleteUser = async (email) => {
 }
 
 const getUsers = async ()=>{
+    let client;
     let result;
     try{
-        await client.connect()
+        client = await pool.connect()
         const data = await client.query("select * from users");
         result = data.rows;
     }
