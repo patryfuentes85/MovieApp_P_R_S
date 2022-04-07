@@ -35,7 +35,7 @@ Trello
 Excalidraw
 Figma
 
-# Necesary DataBases
+# Necessary DataBases
 
 MongoDb Atlas
 Elephant SQL
