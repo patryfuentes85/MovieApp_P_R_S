@@ -8,5 +8,6 @@ html(lang="en")
         title Document
     body 
         header.header__search
-            input.search__searcher__input(type="text" placeholder="Search for a title") 
-            button.search__searcher__button(type="submit") GO
+            form(action="/search/")
+                input.search__searcher__input(name="title" type="text" placeholder="Search for a title") 
+                button.search__searcher__button(type="submit") GO
