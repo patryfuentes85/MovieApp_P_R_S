@@ -1,42 +1,39 @@
-include ./header.pug 
+include ./header.pug
 div.separador_up
 main.searchone__container
     img.searchone__bg__img(src="/assets/form_bg.jpg")
     section.searchone__section
         p.searchone__title=`${films.title}`
         img.searchone__img(src=`${films.poster}`)
-    section.edit__info__section
+    form.edit__info__section(action=`/edit/${films.title}` method="POST")
         p.edit__title Now you can change the params...
-        p.searchone__type Title
-        input.edit__input__director(type="text", placeholder=`${films.title}`)
         div.two__inputs
             p.edit__type Year
             p.edit__type Type
         div.two__inputs
-            input.edit__input__year(type="text", placeholder=`${films.year}`)
-            input.edit__input__type(type="text", placeholder=`${films.type}`)
+            input.edit__input__year(name="year",type="text", value=`${films.year}`)
+            input.edit__input__type(name="type",type="text", value=`${films.type}`)
         div.two__inputs
             p.edit__type Genre
             p.edit__type Duration
         div.two__inputs
-            input.edit__input__genre(type="text", placeholder=`${films.genre}`)
-            input.edit__input__duration(type="text", placeholder=`${films.runtime}`)
+            input.edit__input__genre(name="genre",type="text", value=`${films.genre}`)
+            input.edit__input__duration(name="duration",type="text", value=`${films.runtime}`)
         p.searchone__type Director
-        input.edit__input__director(type="text", placeholder=`${films.director}`)
+        input.edit__input__director(name="director",type="text", value=`${films.director}`)
         p.searchone__type Cast
-        input.edit__input__cast(type="text", placeholder=`${films.cast}`)
+        input.edit__input__cast(name="cast",type="text", value=`${films.cast}`)
         text.searchone__type Resume
-        textarea.edit__input__resume(name="resume", cols="30", rows="10") 
+        input.edit__input__resume(type="text", name="resume", cols="30", rows="10", value=`${films.resume}`)
         div.two__inputs
             p.edit__type Rating
             p.edit__type Image URL
         div.two__inputs
-            input.edit__input__rating(type="text", placeholder=`${films.rating}`)
-            input.edit__input__rating(type="text", placeholder=`${films.url}`)
+            input.edit__input__rating(name="rating",type="text", value=`${films.rating}`)
+            input.edit__input__rating(name="url",type="text", value=`${films.poster}`)
         div.searchone__botton__container
-            button.edit__button(type="click") SAVE CHANGES 
-            button.deleteFavorites(type="click")
+            button.edit__button(type="submit") SAVE CHANGES
+            a.deleteFavorites(href=`/edit/${films.title}`)
                 img.reset__button(type="img",src="/assets/reset.png")
-    a.favorites__link(href="http://localhost:3000/mymovies")
-        button.gofavorites__button(type="click") MY MOVIES
-    
+    a.favorites__link(href="http://localhost:3000/admin")
+        button.gofavorites__button(type="click") MOVIES

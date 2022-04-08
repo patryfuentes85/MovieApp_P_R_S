@@ -1,74 +1,133 @@
-// require("dotenv").config();
-const { Pool } = require('pg');
-const bcrypt = require('bcrypt');
-let pg = require('pg');
-let pgUrl = process.env.PG_URL;
-const client = new pg.Client(pgUrl);
+let pg = require("pg");
+const { Pool } = require("pg");
+const bcrypt = require("bcrypt");
+const regex = require("../utils/regex.js");
 
-/* const pool = new Pool({
-    host: process.env.PG_HOST,
-    user:  process.env.PG_USER,
-    database: 'biwxwjfj',
-    password: process.env.PG_PASSWORD,
-}) */
-
+let localPoolConfig = {
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  database: process.env.DB_DATABASE,
+};
+const poolConfig = process.env.PG_URL
+  ? {
+      connectionString: process.env.PG_URL,
+      ssl: { rejectUnauthorized: false },
+    }
+  : localPoolConfig;
+const pool = new Pool(poolConfig);
 
 const createUser = async (user) => {
     let result;
-    const { username, usersurname, email, rol, profile_pic, password } = user;
+    let client;
+    const { username, usersurname, email, rol='member', profile_pic, password, password2} = user;
     const hashPassword = await bcrypt.hash(password,10);
     try {
-        await client.connect()
+        console.log("entra en el try");
+        if (regex.validateEmail(email) && regex.validatePassword(password) && password == password2 ) {
+            console.log("entra en el if");
+        client = await pool.connect()
         console.log('Conectado');
         const data = await client.query(`INSERT INTO users (username,usersurname,email,rol,profile_pic,password)
-        VALUES ($1,$2,$3,$4,$5,$6)`, [username, usersurname, email,rol, profile_pic, hashPassword])
+        VALUES ($1,$2,$3,$4,$5,$6)`, [username, usersurname, email, rol, profile_pic, hashPassword])
         result = data.rowCount;
+        
+        } else {
+        res.send('usuario incorrecto');
+        }
     } catch (error) {
         console.log("Some Error aqui " + error);
     }finally {
-        await client.end();
-    }
+         client.release;
+  }
 
-    return result;
-}
-
+  return result;
+};
 
 const deleteUser = async (email) => {
+  let client;
+  let result;
+  try {
+    client = await pool.connect();
+    console.log("Ready to delete");
+    const data = await client.query(`DELETE FROM users
+        WHERE email='${email}'`);
+    result = data.rowCount;
+  } catch (error) {
+    console.log("Error de Borrado " + error);
+  } finally {
+    client.release;
+  }
+};
+
+const getUsers = async (email) => {
+  let client;
+  let result;
+  console.log(email);
+  try {
+    client = await pool.connect();
+    const data = await client.query("select * from users");
+    result = data.rows;
+    console.log(result);
+  } catch (err) {
+    console.log(err);
+    throw err;
+  } finally {
+    client.release;
+  }
+  return result;
+};
+
+
+const changeStatus = async (email) => {
+  let client;
+  let result;
+  try {
+    console.log(email);
+    client = await pool.connect();
+    const data = await client.query(
+      `SELECT * FROM users WHERE email = "${email}"`
+    );
+    result = data.rows;
+    console.log(result);
+  } catch (err) {
+    console.log(err);
+    throw err;
+  } finally {
+    client.release;
+  }
+  return result;
+};
+
+const recoverpassword = async (email,newpass) => {
     let result;
     try {
-        await client.connect()
-        console.log('Ready to delete');
-        const data = await client.query(`DELETE FROM users
-        WHERE email='${email}'`);
-        result = data.rowCount;
-    } catch (error) {
-        console.log("Error de Borrado " + error);
-    }finally {
-        await client.end();
+      client = await pool.connect();
+      const data = await client.query(`
+      UPDATE users 
+      SET password=$2
+      WHERE email =$1`,[email,newpass]);
+      result = data.rows;
+    } catch (err) {
+      console.log(err);
+      throw err;
+    } finally {
+      client.release;
     }
+    return result;
+  };
+  const logout = async (req, res, next) => {
+    res.clearCookie("jwt");
+    res.redirect("/");
+  };
 
-}
-
-const getUsers = async ()=>{
-    let result;
-    try{
-        await client.connect()
-        const data = await client.query("select * from users");
-        result = data.rows;
-    }
-    catch(err){
-        console.log(err);
-        throw err;
-    }
-    finally{
-        client.end();
-    }
-    return result
-}
-
-
-module.exports={
-    createUser,
-    deleteUser,
-    getUsers
-}
+module.exports = {
+  logout,
+  createUser,
+  deleteUser,
+  getUsers,
+  changeStatus,
+  getUsers,
+  recoverpassword,
+};

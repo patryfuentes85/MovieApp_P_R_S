@@ -9,9 +9,22 @@ router.get("/", (req, res) => {
 
 router.get("/search/:title?", contFilm.getFilms);
 router.get("/searchone/:title?", contFilm.getFilmByTitle);
-router.get("/create", contFilm.createFilm);
+
+router.get("/create", contFilm.getCreateFilm);
 router.post("/create", contFilm.createMovie);
+
 router.post("/createUser", contUser.createUser);
+router.get("/getUsers", contUser.getUsers);
+
+router.post("/login", contUser.loginUser);
+router.get("/login", async (req, res) => {
+  res.render("login.pug");
+});
+
+router.post("/signup", contUser.createUser);
+router.get("/signup", (req, res) => {
+  res.render("signup.pug");
+});
 
 // router.get("/movies", contFilm.getAllMovies);
 // router.delete("/removeMovie/:title", contFilm.deleteMovie);
@@ -23,23 +36,20 @@ router.get("/dashboard", (req, res) => {
 router.get("/admin/:id?", contFilm.getAllMoviesMongo);
 router.get("/myMovies/:title?", contFilm.getFavorites);
 
-router.get("/signup", (req, res) => {
-  res.render("signup.pug");
-});
-router.get("/login", (req, res) => {
-  res.render("login.pug");
-});
 router.post("/logout", (req, res) => {
   res.render("home.pug");
 });
 
 router.get("/edit/:title", contFilm.getOneMovieMongo);
-// router.post("/edit/:id?", contFilm.editFilms);
+router.post("/edit/:title", contFilm.editMovie);
 
+router.get("/edit/:title/delete", contFilm.getDeleteMovie);
+router.post("/edit/:title/delete", contFilm.deleteMovie);
 
-router.get("/recoverpassword", (req, res) => {
-  res.render("home.pug");
+router.post("/recoverpassword", (req, res) => {
+  res.render("recover.pug");
 });
+
 router.get("/restorepassword", (req, res) => {
   res.render("home.pug");
 });

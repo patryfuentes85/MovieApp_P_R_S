@@ -64,6 +64,30 @@ body {
     box-shadow: 0px 0px 3px #ffffffbc;
   }
 }
+.header__admin__dash__button,
+.header__admin__logout__button {
+  color: white;
+  margin: 2px;
+  border: transparent;
+  width: 100px;
+  height: 25px;
+  background-color: rgba(255, 255, 255, 0.5);
+  font-weight: 400;
+  cursor: pointer;
+}
+.header__admin__dash__button {
+  border-radius: 0px 50px 50px 0px;
+}
+.header__admin__dash__button:hover {
+  background-color: #f9844a;
+  font-weight: 600;
+}
+.header__admin__logout__button {
+  border-radius: 50px 0px 0px 50px;
+}
+.header__admin__logout__button:hover {
+  background-color: rgb(214, 51, 51);
+}
 //HOME
 .main__container {
   display: flex;
@@ -280,7 +304,7 @@ body {
   font-weight: 400;
   transition: 0.3s;
   width: 220px;
-  padding: 0px 0px 0px 10px;
+  padding: 0px 10px 0px 10px;
   border: none;
   outline: 0;
 }
@@ -298,6 +322,55 @@ body {
   background-color: #f9844ae3;
   font-weight: 400;
   cursor: pointer;
+}
+.searchone__comments__title {
+  text-align: justify;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  display: flex;
+  flex-flow: column;
+  width: 280px;
+  background: linear-gradient(
+    -90deg,
+    rgb(30, 51, 75) 0%,
+    rgba(13, 27, 42, 1) 100%
+  );
+  color: white;
+  text-align: center;
+}
+
+.searchone__comments__section {
+  text-align: justify;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 1px;
+  margin-bottom: 50px;
+  display: flex;
+  align-items: start;
+  justify-content: flex-start;
+  flex-flow: column;
+  width: 280px;
+  background: linear-gradient(
+    -90deg,
+    rgb(30, 51, 75) 0%,
+    rgba(13, 27, 42, 1) 100%
+  );
+  box-shadow: 0px 8px 13px #000000be;
+  .comment__article {
+    width: 220px;
+    .comment__name {
+      color: #f9844a;
+      font-size: 10px;
+      margin: 5px 0px 5px 10px;
+    }
+    .comment__content {
+      color: #ffffff;
+      font-size: 10px;
+      margin: 5px 0px 5px 10px;
+    }
+  }
 }
 .search__container {
   display: flex;
@@ -402,6 +475,7 @@ body {
   border-radius: 5px;
   box-shadow: 0px 8px 13px #000000be;
 }
+
 .searchone__section {
   display: flex;
   justify-content: center;
@@ -425,18 +499,19 @@ body {
     margin-top: 5px;
   }
 }
+.delete__section,
 .edit__info__section,
 .searchone__info__section {
   text-align: justify;
-  padding: 15px;
+  padding: 10px;
   border-radius: 5px;
   margin-top: 10px;
-  margin-bottom: 50px;
+  margin-bottom: 5px;
   display: flex;
   align-items: start;
   justify-content: flex-start;
   flex-flow: column;
-  width: 270px;
+  width: 280px;
   background: linear-gradient(
     -90deg,
     rgb(30, 51, 75) 0%,
@@ -478,6 +553,10 @@ body {
       margin: 13px 13px 5px;
     }
   }
+}
+.delete__section,
+.edit__info__section {
+  margin-bottom: 50px;
 }
 // MOVIES_ADMIN
 .edit__button {
@@ -552,6 +631,7 @@ body {
   height: 15px;
   width: 90%;
   border-radius: 10px;
+  color: #0d1b2a;
 }
 
 .edit__input__resume {
@@ -560,21 +640,9 @@ body {
   border: transparent;
   height: 60px;
   border-radius: 10px;
-  text-align: start;
+  color: #0d1b2a;
 }
-.edit__input__name::placeholder,
-.edit__input__url::placeholder,
-.edit__input__director::placeholder,
-.edit__input__cast::placeholder,
-.edit__input__type::placeholder,
-.edit__input__genre::placeholder,
-.edit__input__duration::placeholder,
-.edit__input__rating::placeholder,
-.edit__input__year::placeholder {
-  color: rgb(186, 186, 186);
-  padding-left: 3px;
-  font-size: 10px;
-}
+
 .edit__info__section {
   align-items: center;
 }
@@ -586,6 +654,25 @@ body {
   text-align: center;
   font-weight: 600;
 }
+//DELETE
+
+.delete__section {
+  justify-content: center;
+  align-items: center;
+  p {
+    text-align: center;
+    margin: 10px 10px;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .delete__gif {
+    margin: 10px 10px;
+    border-radius: 5px;
+    width: 90%;
+  }
+}
+
 //ERROR 400
 .error400__container {
   display: flex;
@@ -629,6 +716,29 @@ body {
   .searchone__bg__img {
     margin-right: 15px;
   }
+  .searchone__comments__title {
+    width: 585px;
+  }
+  .searchone__comments__section {
+    display: flex;
+    flex-flow: row;
+    margin-bottom: 20px;
+    width: 585px;
+    .comment__article {
+      width: 290px;
+      margin: 5px;
+      .comment__name {
+        color: #f9844a;
+        font-size: 10px;
+        margin: 5px 5px 5px 5px;
+      }
+      .comment__content {
+        color: #ffffff;
+        font-size: 10px;
+        margin: 5px 5px 5px 5px;
+      }
+    }
+  }
   .searchone__container {
     flex-flow: row;
   }
@@ -636,11 +746,15 @@ body {
     margin-top: 0px;
     margin-left: -305px;
   }
+  .delete__section,
   .edit__info__section,
   .searchone__info__section {
     justify-content: space-between;
     margin: 19px 0px 0px 0px;
-    height: 395px;
+    height: 405px;
+  }
+  .delete__section {
+    justify-content: center;
   }
   .edit__info__section {
     align-items: flex-start;

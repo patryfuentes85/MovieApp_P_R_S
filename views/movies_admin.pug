@@ -1,4 +1,4 @@
-include ./header.pug 
+include ./header_admin.pug 
 div.separador_up
 each val in films
     main.searchone__container
@@ -24,10 +24,10 @@ each val in films
             p.searchone__type  IMDB Rating
             p.searchone__info= `${val.rating} / 10`
             div.searchone__botton__container
-                a(href=`http://localhost:3000/edit/${val.title}`)
+                a(href=`/edit/${val.title}`)
                     button.edit__button EDIT MOVIE
-                button.deleteFavorites(type="click")
+                a.deleteFavorites(href=`/edit/${val.title}/delete`)
                     img.deleteFavorites__button(type="img",src="/assets/delete_hover.png")
 div.separador_down
-a.favorites__link(href="http://localhost:3000/mymovies")
-    button.gofavorites__button(type="click") MY MOVIES
+a.favorites__link(href="http://localhost:3000/create")
+    button.gofavorites__button(type="click") NEW MOVIE
