@@ -21,7 +21,7 @@ const pool = new Pool(poolConfig);
 const createUser = async (user) => {
     let result;
     let client;
-    const { username, usersurname, email, rol, profile_pic, password, password2} = user;
+    const { username, usersurname, email, rol='member', profile_pic, password, password2} = user;
     const hashPassword = await bcrypt.hash(password,10);
     try {
         console.log("entra en el try");
