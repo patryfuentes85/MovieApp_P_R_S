@@ -69,6 +69,7 @@ const getUsers = async (email) => {
     client = await pool.connect();
     const data = await client.query("select * from users");
     result = data.rows;
+    console.log(result);
   } catch (err) {
     console.log(err);
     throw err;
