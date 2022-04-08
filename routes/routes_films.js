@@ -46,7 +46,7 @@ router.post("/edit/:title", contFilm.editMovie);
 router.get("/edit/:title/delete", contFilm.getDeleteMovie);
 router.post("/edit/:title/delete", contFilm.deleteMovie);
 
-router.get("/recoverpassword", (req, res) => {
+router.post("/recoverpassword", (req, res) => {
   res.render("recover.pug");
 });
 

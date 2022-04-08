@@ -101,6 +101,24 @@ const recoverpassword = async (req, res) => {
   }
 };
 
+const recoverPassword = async(req, res) => {
+  try {
+    const url = '';
+      await transporter.sendMail({
+          to: req.params.email,
+          subject: 'Recover Password',
+          html: `<h3>Recover Password</h3>
+              <a href = ${url}>Click to recover password</a>
+              <p>Link will expire in 20 minutes</p>`
+      });
+      res.status(200).json({
+          message: 'A recovery email has been sent to your mail direction'
+      })
+  } catch (error) {
+      console.log('Error:', error)
+  }
+};
+
 
 
 const users = {
