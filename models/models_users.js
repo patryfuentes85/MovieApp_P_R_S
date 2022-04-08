@@ -116,8 +116,13 @@ const recoverpassword = async (email,newpass) => {
     }
     return result;
   };
+  const logout = async (req, res, next) => {
+    res.clearCookie("jwt");
+    res.redirect("/");
+  };
 
 module.exports = {
+  logout,
   createUser,
   deleteUser,
   getUsers,
