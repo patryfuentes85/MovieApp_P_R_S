@@ -725,16 +725,17 @@ body {
     margin-bottom: 20px;
     width: 585px;
     .comment__article {
-      width: 420px;
+      width: 290px;
+      margin: 5px;
       .comment__name {
         color: #f9844a;
         font-size: 10px;
-        margin: 5px 0px 5px 10px;
+        margin: 5px 5px 5px 5px;
       }
       .comment__content {
         color: #ffffff;
         font-size: 10px;
-        margin: 5px 0px 5px 10px;
+        margin: 5px 5px 5px 5px;
       }
     }
   }

@@ -975,17 +975,18 @@ body {
     width: 585px;
   }
   .searchone__comments__section .comment__article {
-    width: 420px;
+    width: 290px;
+    margin: 5px;
   }
   .searchone__comments__section .comment__article .comment__name {
     color: #f9844a;
     font-size: 10px;
-    margin: 5px 0px 5px 10px;
+    margin: 5px 5px 5px 5px;
   }
   .searchone__comments__section .comment__article .comment__content {
     color: #ffffff;
     font-size: 10px;
-    margin: 5px 0px 5px 10px;
+    margin: 5px 5px 5px 5px;
   }
   .searchone__container {
     -webkit-box-orient: horizontal;

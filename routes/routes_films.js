@@ -17,9 +17,9 @@ router.post("/createUser", contUser.createUser);
 router.get("/getUsers", contUser.getUsers);
 
 router.post("/login", contUser.loginUser);
-router.get("/login", (req,res) => {
+router.get("/login", async (req, res) => {
   res.render("login.pug");
-})
+});
 
 router.post("/signup", contUser.createUser);
 router.get("/signup", (req, res) => {
@@ -35,8 +35,6 @@ router.get("/dashboard", (req, res) => {
 });
 router.get("/admin/:id?", contFilm.getAllMoviesMongo);
 router.get("/myMovies/:title?", contFilm.getFavorites);
-
-
 
 router.post("/logout", (req, res) => {
   res.render("home.pug");
