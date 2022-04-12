@@ -26,6 +26,7 @@
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "i": "^0.3.7",
+    "jsdoc": "^3.6.10",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.4.1",
     "mongoose": "^6.2.9",
@@ -40,8 +41,6 @@
     "pug": "^3.0.2",
     "puppeteer": "^13.5.2",
     "sequelize": "^6.17.0",
-    "jsdoc": "^3.6.10"
-  },
-  "devDependencies": {
+    "stack": "^0.1.0"
   }
 }

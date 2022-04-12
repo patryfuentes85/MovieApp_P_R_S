@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const contFilm = require("../controllers/controllers_films.js");
 const contUser = require("../controllers/controllers_users.js");
+const middlewareLog = require("../middlewares/loginCorrect.js");
 
 router.get("/", (req, res) => {
   res.render("home.pug");
@@ -33,12 +34,12 @@ router.get("/signup", (req, res) => {
 router.get("/dashboard", (req, res) => {
   res.render("dashboard.pug");
 });
-router.get("/admin/:id?", contFilm.getAllMoviesMongo);
+router.post("/dashboard", contUser.logoutUser);
+
+router.get("/admin/:id?", middlewareLog, contFilm.getAllMoviesMongo);
 router.get("/myMovies/:title?", contFilm.getFavorites);
 
-router.post("/logout", (req, res) => {
-  res.render("home.pug");
-});
+router.post("/admin", contUser.logoutUser);
 
 router.get("/edit/:title", contFilm.getOneMovieMongo);
 router.post("/edit/:title", contFilm.editMovie);

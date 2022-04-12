@@ -19,27 +19,41 @@ const poolConfig = process.env.PG_URL
 const pool = new Pool(poolConfig);
 
 const createUser = async (user) => {
-    let result;
-    let client;
-    const { username, usersurname, email, rol='member', profile_pic, password, password2} = user;
-    const hashPassword = await bcrypt.hash(password,10);
-    try {
-        console.log("entra en el try");
-        if (regex.validateEmail(email) && regex.validatePassword(password) && password == password2 ) {
-            console.log("entra en el if");
-        client = await pool.connect()
-        console.log('Conectado');
-        const data = await client.query(`INSERT INTO users (username,usersurname,email,rol,profile_pic,password)
-        VALUES ($1,$2,$3,$4,$5,$6)`, [username, usersurname, email, rol, profile_pic, hashPassword])
-        result = data.rowCount;
-        
-        } else {
-        res.send('usuario incorrecto');
-        }
-    } catch (error) {
-        console.log("Some Error aqui " + error);
-    }finally {
-         client.release;
+  let result;
+  let client;
+  const {
+    username,
+    usersurname,
+    email,
+    rol = "member",
+    profile_pic,
+    password,
+    password2,
+  } = user;
+  const hashPassword = await bcrypt.hash(password, 10);
+  try {
+    console.log("entra en el try");
+    if (
+      regex.validateEmail(email) &&
+      regex.validatePassword(password) &&
+      password == password2
+    ) {
+      console.log("entra en el if");
+      client = await pool.connect();
+      console.log("Conectado");
+      const data = await client.query(
+        `INSERT INTO users (username,usersurname,email,rol,profile_pic,password)
+        VALUES ($1,$2,$3,$4,$5,$6)`,
+        [username, usersurname, email, rol, profile_pic, hashPassword]
+      );
+      result = data.rowCount;
+    } else {
+      res.send("usuario incorrecto");
+    }
+  } catch (error) {
+    console.log("Some Error aqui " + error);
+  } finally {
+    client.release;
   }
 
   return result;
@@ -69,7 +83,6 @@ const getUsers = async (email) => {
     client = await pool.connect();
     const data = await client.query("select * from users");
     result = data.rows;
-    console.log(result);
   } catch (err) {
     console.log(err);
     throw err;
@@ -79,6 +92,23 @@ const getUsers = async (email) => {
   return result;
 };
 
+const getRol = async (email) => {
+  let client;
+  let result;
+  try {
+    client = await pool.connect();
+    const data = await client.query(
+      `SELECT rol FROM users WHERE email = '${email}'`
+    );
+    result = data.rows;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  } finally {
+    client.release;
+  }
+  return result;
+};
 
 const changeStatus = async (email) => {
   let client;
@@ -100,30 +130,29 @@ const changeStatus = async (email) => {
   return result;
 };
 
-const recoverpassword = async (email,newpass) => {
-    let result;
-    try {
-      client = await pool.connect();
-      const data = await client.query(`
-      UPDATE users 
+const recoverpassword = async (email, newpass) => {
+  let result;
+  try {
+    client = await pool.connect();
+    const data = await client.query(
+      `
+      UPDATE users
       SET password=$2
-      WHERE email =$1`,[email,newpass]);
-      result = data.rows;
-    } catch (err) {
-      console.log(err);
-      throw err;
-    } finally {
-      client.release;
-    }
-    return result;
-  };
-  const logout = async (req, res, next) => {
-    res.clearCookie("jwt");
-    res.redirect("/");
-  };
+      WHERE email =$1`,
+      [email, newpass]
+    );
+    result = data.rows;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  } finally {
+    client.release;
+  }
+  return result;
+};
 
 module.exports = {
-  logout,
+  getRol,
   createUser,
   deleteUser,
   getUsers,

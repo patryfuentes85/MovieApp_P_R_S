@@ -8,6 +8,6 @@ main.main__container
             button.dashboard__search__button(type="click") SEARCH
         a(href="http://localhost:3000/mymovies")
             button.dashboard__mymovies__button(type="click") MY MOVIES
-        a(href="http://localhost:3000/")
-            button.dashboard__logout__button(type="click") LOG OUT
+        form(action="/dashboard", method="post")
+            button.dashboard__logout__button(type="submit") LOG OUT
         img.main__gif(src="assets/gif_home_ok.gif", type="gif")
