@@ -7,9 +7,8 @@ html(lang="en")
         link(rel="stylesheet", href="/css/styles.css")
         title FILMS
     body 
-        header.header__search
-            a(href="/login") 
-                button.header__admin__logout__button(type="click") LOGOUT
+        form(action="/admin", method="post").header__search
+            button.header__admin__logout__button(type="submit") LOGOUT
             a(href="/dashboard") 
                 button.header__admin__dash__button(type="click") GO DASH  
  
