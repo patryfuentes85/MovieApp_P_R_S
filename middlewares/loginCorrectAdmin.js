@@ -3,9 +3,9 @@ const jwt = require("jsonwebtoken");
 const user = require("../models/models_users");
 const jwt_secret = "youraccesstokensecret";
 
-const protectedRoutes = express.Router();
+const protectedRoutesAdmin = express.Router();
 
-protectedRoutes.use(async (req, res, next) => {
+protectedRoutesAdmin.use(async (req, res, next) => {
   const token = req.headers.cookie;
   console.log(token.substring(12));
   if (token) {
@@ -16,7 +16,7 @@ protectedRoutes.use(async (req, res, next) => {
       if (rol[0].rol == "admin") {
         next();
       } else if (rol[0].rol == "member") {
-        next();
+        return res.json({ msg: "No tienes permiso para estar aquí" });
       } else {
         return res.json({ msg: "Invalid token" });
       }
@@ -25,4 +25,4 @@ protectedRoutes.use(async (req, res, next) => {
   // let rol = await user.getRol("sergioiznaola3@gmail.com")
 });
 
-module.exports = protectedRoutes;
+module.exports = protectedRoutesAdmin;
