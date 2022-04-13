@@ -103,11 +103,7 @@ const loginUser = async (req, res) => {
       const match = await bcrypt.compare(pass, usuario.password);
       let userRol = usuario.rol;
       console.log(userRol);
-      //funcion cambiar estado
-      // const userLog = await user.changeStatus(usuario.email);
-      console.log("ha entrado en el primer if");
       if (match) {
-        console.log("ha entrado en el 2do if");
         const payload = {
           check: true,
           email: usuario.email,
@@ -115,7 +111,7 @@ const loginUser = async (req, res) => {
           role: userRol,
         };
         const token = jwt.sign(payload, accessTokenSecret, {
-          expiresIn: "2m",
+          expiresIn: "15m",
         });
         console.log(payload);
         if (userRol == "admin") {
