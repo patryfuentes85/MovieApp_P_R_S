@@ -2,6 +2,8 @@ const jwt = require("jsonwebtoken");
 const user = require("../models/models_users.js");
 const accessTokenSecret = "youraccesstokensecret";
 const bcrypt = require("bcrypt");
+const passport = require('passport');
+const googlePassport = require("../utils/passport-setup.js");
 
 const createUser = async (req, res) => {
   try {
@@ -144,6 +146,7 @@ const loginUser = async (req, res) => {
     console.log(error);
   }
 };
+
 
 const users = {
   logoutUser,
