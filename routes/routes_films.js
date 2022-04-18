@@ -2,16 +2,18 @@ const express = require("express");
 const router = express.Router();
 const contFilm = require("../controllers/controllers_films.js");
 const contUser = require("../controllers/controllers_users.js");
+const logAdmin = require("../middlewares/loginCorrectAdmin.js");
+const logMember = require("../middlewares/loginCorrectMember.js");
 
 router.get("/", (req, res) => {
   res.render("home.pug");
 });
 
-router.get("/search/:title?", contFilm.getFilms);
-router.get("/searchone/:title?", contFilm.getFilmByTitle);
+router.get("/search/:title?", logMember, contFilm.getFilms);
+router.get("/searchone/:title?", logMember, contFilm.getFilmByTitle);
 
-router.get("/create", contFilm.getCreateFilm);
-router.post("/create", contFilm.createMovie);
+router.get("/create", logAdmin, contFilm.getCreateFilm);
+router.post("/create", logAdmin, contFilm.createMovie);
 
 router.post("/createUser", contUser.createUser);
 router.get("/getUsers", contUser.getUsers);
@@ -30,21 +32,21 @@ router.get("/signup", (req, res) => {
 // router.delete("/removeMovie/:title", contFilm.deleteMovie);
 // router.put("/editMovie/:id", contFilm.editMovie);
 
-router.get("/dashboard", (req, res) => {
+router.get("/dashboard", logMember, (req, res) => {
   res.render("dashboard.pug");
 });
-router.get("/admin/:id?", contFilm.getAllMoviesMongo);
-router.get("/myMovies/:title?", contFilm.getFavorites);
+router.post("/dashboard", logMember, contUser.logoutUser);
 
-router.post("/logout", (req, res) => {
-  res.render("home.pug");
-});
+router.get("/admin/:id?", logAdmin, contFilm.getAllMoviesMongo);
+router.get("/myMovies/:title?", logMember, contFilm.getFavorites);
 
-router.get("/edit/:title", contFilm.getOneMovieMongo);
-router.post("/edit/:title", contFilm.editMovie);
+router.post("/admin", logAdmin, contUser.logoutUser);
 
-router.get("/edit/:title/delete", contFilm.getDeleteMovie);
-router.post("/edit/:title/delete", contFilm.deleteMovie);
+router.get("/edit/:title", logAdmin, contFilm.getOneMovieMongo);
+router.post("/edit/:title", logAdmin, contFilm.editMovie);
+
+router.get("/edit/:title/delete", logAdmin, contFilm.getDeleteMovie);
+router.post("/edit/:title/delete", logAdmin, contFilm.deleteMovie);
 
 router.post("/recoverpassword", (req, res) => {
   res.render("recover.pug");
