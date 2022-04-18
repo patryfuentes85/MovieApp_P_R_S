@@ -1,5 +1,4 @@
 const createUser = require('../controllers/controllers_users.js');
-const findUserEmail = require('../controllers/controllers_users.js');
 
 const googleAuth = async (req, res, next) => {
     if (!req.user) {
