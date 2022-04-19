@@ -1,11 +1,13 @@
-const createUser = require('../controllers/controllers_users.js');
+/* const createUser = require('../controllers/controllers_users.js');
 
-const googleAuth = async (req, res, next) => {
+
+ const googleAuth = async (req, res, next) => {
     if (!req.user) {
         return next(error)
     }
 
     try {
+        console.log(req.user.emails[0].value)
         const userData = { name: req.user.displayName, email: req.user.email, password: require('crypto').randomBytes(64).toString('hex') }
         // Comprobamos que el usuario no esté ya en la DB:
         const foundUser = await findUserEmail(userData.email);
@@ -25,4 +27,4 @@ const googleAuth = async (req, res, next) => {
     }
 }
 
-module.exports = googleAuth;
+module.exports = {googleAuth }; */

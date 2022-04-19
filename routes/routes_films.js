@@ -4,6 +4,7 @@ const contFilm = require("../controllers/controllers_films.js");
 const contUser = require("../controllers/controllers_users.js");
 const logAdmin = require("../middlewares/loginCorrectAdmin.js");
 const logMember = require("../middlewares/loginCorrectMember.js");
+const google = require("../middlewares/googleAuth.js");
 
 router.get("/", (req, res) => {
   res.render("home.pug");
@@ -32,10 +33,10 @@ router.get("/signup", (req, res) => {
 // router.delete("/removeMovie/:title", contFilm.deleteMovie);
 // router.put("/editMovie/:id", contFilm.editMovie);
 
-router.get("/dashboard", logMember, (req, res) => {
+router.get("/dashboard", (req, res) => {
   res.render("dashboard.pug");
 });
-router.post("/dashboard", logMember, contUser.logoutUser);
+router.post("/dashboard", contUser.logoutUser);
 
 router.get("/admin/:id?", logAdmin, contFilm.getAllMoviesMongo);
 router.get("/myMovies/:title?", logMember, contFilm.getFavorites);
