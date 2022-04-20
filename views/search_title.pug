@@ -9,10 +9,10 @@ div.search__flex
                 p.search__year= `${val.Year} / ${val.Type.toUpperCase()}`
                 img.search__img(src=`${val.Poster}`)
                 div.search__botton__container
-                    a(href="http://localhost:3000/searchone/"+val.Title)
+                    a(href="/searchone/"+val.Title)
                         button.viewMore__button(type="click") VIEW TITLE
                     button.addFavorites(type="click")
                         img.addFavorites__button(type="img",src="/assets/corazon.png")
 div.separador_down
-a.favorites__link(href="http://localhost:3000/mymovies")
+a.favorites__link(href="/mymovies")
     button.gofavorites__button(type="click") MY MOVIES
