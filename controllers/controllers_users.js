@@ -8,7 +8,7 @@ const googlePassport = require("../utils/passport-setup.js");
 const createUser = async (req, res) => {
   try {
     let datos = await user.createUser(req.body);
-    res.status(201).redirect("http://localhost:3000/login");
+    res.status(201).redirect("/login");
   } catch (error) {
     console.log(`ERROR: ${error.stack}`);
   }
@@ -55,7 +55,7 @@ const logoutUser = async (req, res) => {
         httpOnly: true,
         sameSite: "strict",
       })
-      .redirect("http://localhost:3000/login");
+      .redirect("/login");
     console.log("logout okkk !!");
   } catch (error) {
     console.log(error);
@@ -122,14 +122,14 @@ const loginUser = async (req, res) => {
               httpOnly: true,
               sameSite: "strict",
             })
-            .redirect("http://localhost:3000/admin");
+            .redirect("/admin");
         } else {
           res
             .cookie("accesstoken", token, {
               httpOnly: true,
               sameSite: "strict",
             })
-            .redirect("http://localhost:3000/dashboard");
+            .redirect("/dashboard");
         }
       } else {
         res.send("Email o password incorrecto");
