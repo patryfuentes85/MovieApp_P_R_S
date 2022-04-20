@@ -10,6 +10,9 @@ const passport = require('passport');
 const cookieSession = require('cookie-session');
 const morgan = require('morgan');
 const cors = require('cors');
+const user = require('./models/models_users')
+const jwt = require("jsonwebtoken");
+const accessTokenSecret = "youraccesstokensecret";
 
 const app = express() // Inicializa el servidor. App es un bjeto que representa el server
 const port = 3000
@@ -30,40 +33,58 @@ app.use(morgan('tiny'));
 
 app.use("/",filmsRouter);
 
+
 // ************  Google auth  ************** //
 
 // For an actual app you should configure this with an experation time, better keys, proxy and secure
 app.use(cookieSession({
-  name: 'moviesClient-session',
+  name: 'MoviesApi-session',
   keys: ['key1', 'key2']
 }))
 
-// Auth middleware that checks if the user is logged in
-const isLoggedIn = (req, res, next) => {
-  if (req.user) {
-      next();
-  } else {
-      res.sendStatus(401);
-  }
-}
 
 // Initializes passport and passport sessions
 app.use(passport.initialize());
 app.use(passport.session());
 
 // Auth Routes
-app.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+app.get('/auth/google/', passport.authenticate('google', { scope: ['profile', 'email'], prompt: "select_account" }));
 app.get('/failed', (req, res) => res.send('You Failed to log in!'))
 
-// In this route you can see that if the user is logged in u can acess his info in: req.user
-app.get('/good', isLoggedIn, (req, res) => res.send(`Welcome mr ${req.user.displayName}!`))
+
+
+// Auth Routes
+
 
 app.get('/google/callback', passport.authenticate('google', { failureRedirect: '/failed' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/good');
+ async function(req, res) {
+   console.log("entra en la funcion");
+
+    const users = await user.getUsers();
+    const usuario = users.find((u) => {
+      return u.email === req.user.emails[0].value;
+    });
+    if (usuario) {
+      console.log("entra al if");
+      const payload = {
+        check: true,
+        email: usuario.email
+      };
+      const token = jwt.sign(payload, accessTokenSecret, {
+        expiresIn: "15m",
+      });
+      res.cookie("accesstoken", token, {
+          httpOnly: true,
+          sameSite: "strict",
+        }).redirect('/dashboard');
+    } 
+    // falta el else --- para que genere un usuario nuevo con los datos que da google
+   // falta añadir el midleware en la ruta del dashboard porque lo tuve que quitar para probar que me funcionaba el passport y el login con google 
   }
 );
+
+
+
 
 app.get('/logout', (req, res) => {
     req.session = null;
@@ -72,10 +93,8 @@ app.get('/logout', (req, res) => {
 })
 
 
-
-
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+    console.log(`Example app listening on port http://localhost:${port}`)
 })
 
  //module.exports = server;
