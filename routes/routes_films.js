@@ -11,6 +11,8 @@ router.get("/", (req, res) => {
 
 router.get("/search/:title?", logMember, contFilm.getFilms);
 router.get("/searchone/:title?", logMember, contFilm.getFilmByTitle);
+router.post("/searchone", logMember, contUser.logoutUser);
+
 
 router.get("/create", logAdmin, contFilm.getCreateFilm);
 router.post("/create", logAdmin, contFilm.createMovie);

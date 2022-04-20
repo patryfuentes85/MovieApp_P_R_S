@@ -132,10 +132,10 @@ const loginUser = async (req, res) => {
             .redirect("http://localhost:3000/dashboard");
         }
       } else {
-        res.send("Email o password incorrecto");
+        res.render("Pass_incorrecto.pug");
       }
     } else {
-      res.send("Email o password incorrecto");
+      res.render("Pass_incorrecto.pug");
     }
     console.log("login okkk !!");
   } catch (error) {
